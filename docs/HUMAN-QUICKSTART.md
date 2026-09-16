@@ -66,7 +66,7 @@ import { ThemeProvider, BrandProvider } from '@acme/ui';
 
 function App() {
   return (
-    <BrandProvider defaultBrand="aurora">
+    <BrandProvider defaultBrand="atlas">
       <ThemeProvider defaultMode="system">
         {/* Your app */}
       </ThemeProvider>
@@ -127,7 +127,7 @@ import { Hero, Button } from '@acme/ui';
 ### 3. Add Features
 
 ```tsx
-import { Section, FeatureGrid, FeatureGridItem } from '@acme/ui';
+import { Section, FeatureGrid, FeatureGridItem, Icon, ICON_SIZE_FEATURE } from '@acme/ui';
 import { Zap, Shield, Palette } from 'lucide-react';
 
 <Section id="features" tone="muted">
@@ -136,19 +136,19 @@ import { Zap, Shield, Palette } from 'lucide-react';
     description="Built with modern best practices"
   >
     <FeatureGridItem
-      icon={Zap}
+      icon={<Icon icon={Zap} size={ICON_SIZE_FEATURE} />}
       title="Lightning Fast"
       description="Optimized for performance with minimal JavaScript."
     />
     <FeatureGridItem
-      icon={Shield}
+      icon={<Icon icon={Shield} size={ICON_SIZE_FEATURE} />}
       title="Accessible"
       description="WCAG 2.2 AA compliant out of the box."
     />
     <FeatureGridItem
-      icon={Palette}
+      icon={<Icon icon={Palette} size={ICON_SIZE_FEATURE} />}
       title="Themeable"
-      description="Change brands and modes without touching code."
+      description="Change niches and modes without touching code."
     />
   </FeatureGrid>
 </Section>
@@ -180,14 +180,16 @@ import { CTASection, Button } from '@acme/ui';
 Set `data-brand` on `<html>`:
 
 ```html
-<html data-brand="editorial">
+<html data-brand="folio">
 ```
 
 Or use the BrandProvider:
 
 ```tsx
-<BrandProvider defaultBrand="editorial">
+<BrandProvider defaultBrand="folio">
 ```
+
+Niches: `atlas` (default), `folio`, `maison`. Stored `aurora` / `editorial` ids migrate to `atlas`.
 
 ### Change Mode
 
@@ -221,7 +223,7 @@ Override CSS variables in your CSS:
 
 ```css
 :root {
-  --primary: 220 90% 56%; /* Custom primary color */
+  --primary: #1e3a5f; /* Custom primary color */
   --radius: 1rem; /* Rounder corners */
 }
 ```
@@ -259,4 +261,5 @@ Before launching, complete the checklist in `PERF-A11Y-CHECKLIST.md`:
 
 - **Storybook:** See all components and their variants
 - **DESIGN.md:** Visual principles and token rules
+- **HOW-TO-THEME.md:** Change colors, fonts, and icons
 - **FIGMA-CODE-SYNC.md:** For designers working with the Figma kit

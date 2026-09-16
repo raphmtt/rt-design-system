@@ -12,7 +12,7 @@ Complete this checklist before shipping any landing page built with the Acme des
 | CSS transferred | ≤ 40 KB | Lighthouse / DevTools Network |
 | LCP (throttled 4G, cold) | ≤ 2.5 s | Lighthouse Performance |
 | CLS | ≤ 0.1 | Lighthouse / Web Vitals |
-| Fonts | max 2 families | Check `<link>` tags |
+| Fonts | display + body + mono (3 families) | Check `<link>` tags |
 
 ### Performance Checklist
 
@@ -22,7 +22,7 @@ Complete this checklist before shipping any landing page built with the Acme des
 - [ ] JS bundle ≤ 150 KB (gzip)
 - [ ] CSS ≤ 40 KB (gzip)
 - [ ] Fonts use `font-display: swap`
-- [ ] Only 2 font families loaded
+- [ ] Three families loaded (Instrument Serif, Inter, JetBrains Mono)
 - [ ] Images have width/height attributes
 - [ ] Images below fold are lazy loaded
 - [ ] No layout-blocking third-party scripts
@@ -53,12 +53,14 @@ Complete this checklist before shipping any landing page built with the Acme des
 
 ### Color & Contrast
 
-**Test both brands (aurora, editorial) and both modes (light, dark):**
+**Test all niches (atlas, folio, maison) and both modes (light, dark):**
 
-- [ ] Body text contrast ≥ 4.5:1 (aurora light)
-- [ ] Body text contrast ≥ 4.5:1 (aurora dark)
-- [ ] Body text contrast ≥ 4.5:1 (editorial light)
-- [ ] Body text contrast ≥ 4.5:1 (editorial dark)
+- [ ] Body text contrast ≥ 4.5:1 (atlas light)
+- [ ] Body text contrast ≥ 4.5:1 (atlas dark)
+- [ ] Body text contrast ≥ 4.5:1 (folio light)
+- [ ] Body text contrast ≥ 4.5:1 (folio dark)
+- [ ] Body text contrast ≥ 4.5:1 (maison light)
+- [ ] Body text contrast ≥ 4.5:1 (maison dark)
 - [ ] Large text contrast ≥ 3:1 (all themes)
 - [ ] Color is not the sole indicator of state/error
 - [ ] Links distinguishable from body text
@@ -96,8 +98,9 @@ Complete this checklist before shipping any landing page built with the Acme des
 - [ ] a11y addon shows no violations
 - [ ] All components tested in light mode
 - [ ] All components tested in dark mode
-- [ ] All components tested in aurora brand
-- [ ] All components tested in editorial brand
+- [ ] All components tested in atlas niche
+- [ ] All components tested in folio niche
+- [ ] All components tested in maison niche
 
 ---
 
@@ -145,7 +148,7 @@ Test with at least one:
 | Accessibility (axe) | | |
 | Keyboard navigation | | |
 | Screen reader | | |
-| Light mode (all brands) | | |
-| Dark mode (all brands) | | |
+| Light mode (all niches) | | |
+| Dark mode (all niches) | | |
 | Mobile (375px) | | |
 | Desktop (1440px) | | |

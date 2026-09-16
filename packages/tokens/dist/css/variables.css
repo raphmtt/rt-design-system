@@ -1,0 +1,158 @@
+/* Acme Design System - Generated Tokens */
+
+:root, [data-brand="atlas"] {
+  --background: #F4F2EC;
+  --foreground: #1A1C1F;
+  --card: #FFFEFB;
+  --card-foreground: #1A1C1F;
+  --primary: #1E3A5F;
+  --primary-foreground: #F4F2EC;
+  --secondary: #E7E4DC;
+  --secondary-foreground: #1A1C1F;
+  --muted: #EDEAE3;
+  --muted-foreground: #5A5E66;
+  --accent: #3F5C52;
+  --accent-foreground: #F4F2EC;
+  --destructive: #9B2C2C;
+  --destructive-foreground: #FFFFFF;
+  --border: #D5D1C7;
+  --input: #D5D1C7;
+  --ring: #1E3A5F;
+  --radius: 0.5rem;
+  --font-display: "Instrument Serif";
+  --font-heading: "Inter";
+  --font-body: "Inter";
+  --font-mono: "JetBrains Mono";
+  --space-section-y: 4rem;
+}
+
+.dark, [data-brand="atlas"].dark, .dark[data-brand="atlas"] {
+  --background: #16181C;
+  --foreground: #ECEAE4;
+  --card: #1E2126;
+  --card-foreground: #ECEAE4;
+  --primary: #A8BDD2;
+  --primary-foreground: #16181C;
+  --secondary: #25282E;
+  --secondary-foreground: #ECEAE4;
+  --muted: #25282E;
+  --muted-foreground: #A8ABB3;
+  --accent: #8AA399;
+  --accent-foreground: #16181C;
+  --destructive: #E08A8A;
+  --destructive-foreground: #16181C;
+  --border: #2E323A;
+  --input: #2E323A;
+  --ring: #A8BDD2;
+  --radius: 0.5rem;
+  --font-display: "Instrument Serif";
+  --font-heading: "Inter";
+  --font-body: "Inter";
+  --font-mono: "JetBrains Mono";
+  --space-section-y: 4rem;
+}
+
+[data-brand="folio"] {
+  --background: #F7F1E6;
+  --foreground: #1C1814;
+  --card: #FFFBF3;
+  --card-foreground: #1C1814;
+  --primary: #3F3A32;
+  --primary-foreground: #F7F1E6;
+  --secondary: #EDE4D4;
+  --secondary-foreground: #1C1814;
+  --muted: #EFE6D7;
+  --muted-foreground: #5C564C;
+  --accent: #7A4E3A;
+  --accent-foreground: #FFFBF3;
+  --destructive: #8F2F2F;
+  --destructive-foreground: #FFFFFF;
+  --border: #DDD3C2;
+  --input: #DDD3C2;
+  --ring: #3F3A32;
+  --radius: 0.375rem;
+  --font-display: "Instrument Serif";
+  --font-heading: "Inter";
+  --font-body: "Inter";
+  --font-mono: "JetBrains Mono";
+  --space-section-y: 4rem;
+}
+
+[data-brand="folio"].dark, .dark[data-brand="folio"] {
+  --background: #1A1714;
+  --foreground: #F0E6D8;
+  --card: #231F1B;
+  --card-foreground: #F0E6D8;
+  --primary: #D4C4A8;
+  --primary-foreground: #1A1714;
+  --secondary: #2B2621;
+  --secondary-foreground: #F0E6D8;
+  --muted: #2B2621;
+  --muted-foreground: #B3A898;
+  --accent: #D4A08C;
+  --accent-foreground: #1A1714;
+  --destructive: #E09A9A;
+  --destructive-foreground: #1A1714;
+  --border: #3A342C;
+  --input: #3A342C;
+  --ring: #D4C4A8;
+  --radius: 0.375rem;
+  --font-display: "Instrument Serif";
+  --font-heading: "Inter";
+  --font-body: "Inter";
+  --font-mono: "JetBrains Mono";
+  --space-section-y: 4rem;
+}
+
+[data-brand="maison"] {
+  --background: #F8F1E8;
+  --foreground: #2A211C;
+  --card: #FFF8F1;
+  --card-foreground: #2A211C;
+  --primary: #6B4A38;
+  --primary-foreground: #F8F1E8;
+  --secondary: #EFE4D6;
+  --secondary-foreground: #2A211C;
+  --muted: #F1E6D9;
+  --muted-foreground: #6A5B50;
+  --accent: #5F6F52;
+  --accent-foreground: #F8F1E8;
+  --destructive: #9B3D32;
+  --destructive-foreground: #FFFFFF;
+  --border: #E0D3C4;
+  --input: #E0D3C4;
+  --ring: #6B4A38;
+  --radius: 0.75rem;
+  --font-display: "Instrument Serif";
+  --font-heading: "Inter";
+  --font-body: "Inter";
+  --font-mono: "JetBrains Mono";
+  --space-section-y: 4rem;
+}
+
+[data-brand="maison"].dark, .dark[data-brand="maison"] {
+  --background: #1C1612;
+  --foreground: #F3E8DC;
+  --card: #261E18;
+  --card-foreground: #F3E8DC;
+  --primary: #C4A484;
+  --primary-foreground: #1C1612;
+  --secondary: #2E241C;
+  --secondary-foreground: #F3E8DC;
+  --muted: #2E241C;
+  --muted-foreground: #C2B2A3;
+  --accent: #A3B18F;
+  --accent-foreground: #1C1612;
+  --destructive: #E09A90;
+  --destructive-foreground: #1C1612;
+  --border: #3C3228;
+  --input: #3C3228;
+  --ring: #C4A484;
+  --radius: 0.75rem;
+  --font-display: "Instrument Serif";
+  --font-heading: "Inter";
+  --font-body: "Inter";
+  --font-mono: "JetBrains Mono";
+  --space-section-y: 4rem;
+}
+

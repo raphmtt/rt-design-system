@@ -1,59 +1,4 @@
 {
-  "color": {
-    "zinc": {
-      "50": { "value": "250 250 250", "type": "color" },
-      "100": { "value": "244 244 245", "type": "color" },
-      "200": { "value": "228 228 231", "type": "color" },
-      "300": { "value": "212 212 216", "type": "color" },
-      "400": { "value": "161 161 170", "type": "color" },
-      "500": { "value": "113 113 122", "type": "color" },
-      "600": { "value": "82 82 91", "type": "color" },
-      "700": { "value": "63 63 70", "type": "color" },
-      "800": { "value": "39 39 42", "type": "color" },
-      "900": { "value": "24 24 27", "type": "color" },
-      "950": { "value": "9 9 11", "type": "color" }
-    },
-    "stone": {
-      "50": { "value": "250 250 249", "type": "color" },
-      "100": { "value": "245 245 244", "type": "color" },
-      "200": { "value": "231 229 228", "type": "color" },
-      "300": { "value": "214 211 209", "type": "color" },
-      "400": { "value": "168 162 158", "type": "color" },
-      "500": { "value": "120 113 108", "type": "color" },
-      "600": { "value": "87 83 78", "type": "color" },
-      "700": { "value": "68 64 60", "type": "color" },
-      "800": { "value": "41 37 36", "type": "color" },
-      "900": { "value": "28 25 23", "type": "color" },
-      "950": { "value": "12 10 9", "type": "color" }
-    },
-    "teal": {
-      "400": { "value": "45 212 191", "type": "color" },
-      "500": { "value": "20 184 166", "type": "color" },
-      "600": { "value": "13 148 136", "type": "color" }
-    },
-    "violet": {
-      "400": { "value": "167 139 250", "type": "color" },
-      "500": { "value": "139 92 246", "type": "color" },
-      "600": { "value": "124 58 237", "type": "color" }
-    },
-    "red": {
-      "400": { "value": "248 113 113", "type": "color" },
-      "500": { "value": "239 68 68", "type": "color" },
-      "600": { "value": "220 38 38", "type": "color" },
-      "900": { "value": "127 29 29", "type": "color" }
-    },
-    "amber": {
-      "50": { "value": "255 251 235", "type": "color" },
-      "100": { "value": "254 243 199", "type": "color" },
-      "900": { "value": "120 53 15", "type": "color" }
-    },
-    "emerald": {
-      "600": { "value": "5 150 105", "type": "color" },
-      "700": { "value": "4 120 87", "type": "color" }
-    },
-    "white": { "value": "255 255 255", "type": "color" },
-    "black": { "value": "0 0 0", "type": "color" }
-  },
   "space": {
     "0": { "value": "0", "type": "dimension" },
     "1": { "value": "0.25rem", "type": "dimension" },
@@ -82,9 +27,9 @@
   },
   "font": {
     "family": {
+      "instrument": { "value": "Instrument Serif", "type": "fontFamily" },
       "inter": { "value": "Inter", "type": "fontFamily" },
-      "jakarta": { "value": "Plus Jakarta Sans", "type": "fontFamily" },
-      "newsreader": { "value": "Newsreader", "type": "fontFamily" }
+      "jetbrains": { "value": "JetBrains Mono", "type": "fontFamily" }
     },
     "size": {
       "xs": { "value": "0.75rem", "type": "dimension" },

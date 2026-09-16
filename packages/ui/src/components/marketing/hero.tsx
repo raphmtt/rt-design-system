@@ -54,7 +54,7 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
                   {eyebrow}
                 </div>
               )}
-              <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="font-display text-4xl font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
                 {title}
               </h1>
               {description && (

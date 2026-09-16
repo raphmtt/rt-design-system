@@ -16,8 +16,22 @@ import {
   Button,
   ModeToggle,
   BrandSelect,
+  Icon,
+  ICON_SIZE_FEATURE,
+  useBrand,
+  useTheme,
 } from '@acme/ui';
-import { Zap, Shield, Palette, Globe, Lock, Sparkles, Github, Twitter } from 'lucide-react';
+import { brandLabels } from '@acme/tokens';
+import {
+  Zap,
+  Shield,
+  Palette,
+  Globe,
+  Lock,
+  Sparkles,
+  Github,
+  Twitter,
+} from 'lucide-react';
 
 const Logo = () => (
   <a href="/" className="font-heading font-bold text-xl text-foreground">
@@ -62,157 +76,167 @@ const faqItems = [
   {
     question: 'What is included in the design system?',
     answer:
-      'The design system includes foundational components, marketing blocks, layout utilities, and a complete theming system with support for multiple brands and dark mode.',
+      'The design system includes foundational components, marketing blocks, layout utilities, and a complete theming system with three niches (atlas, folio, maison) and dark mode.',
   },
   {
     question: 'How do I customize the theme?',
     answer:
-      'Customize the theme by setting the data-brand attribute for brand switching and the .dark class for dark mode. All components use CSS variables for colors, making customization straightforward.',
+      'Set data-brand="atlas|folio|maison" on <html> and toggle the .dark class. Colors, radius, and type tokens remap — components stay the same. See docs/HOW-TO-THEME.md.',
   },
   {
     question: 'Is the design system accessible?',
     answer:
-      'Yes! All components are built with accessibility in mind, following WCAG 2.2 AA guidelines. We include proper focus management, keyboard navigation, and ARIA attributes.',
+      'Yes. Palettes target WCAG 2.2 AA contrast. Components include focus management, keyboard navigation, and ARIA attributes.',
   },
   {
     question: 'Can I use this with other frameworks?',
     answer:
-      'The design system is built for React 19 but the token and CSS architecture can be adapted to other frameworks. The Tailwind preset works with any project that uses Tailwind CSS v4.',
+      'The design system is built for React 19 but the token and CSS architecture can be adapted. The Tailwind preset works with any project that uses Tailwind CSS v4.',
   },
 ];
 
+function Landing() {
+  const { brand } = useBrand();
+  const { resolvedMode } = useTheme();
+  const niche = brandLabels[brand];
+
+  return (
+    <SiteShell>
+      <SiteHeader
+        logo={<Logo />}
+        navItems={navItems}
+        cta={{ label: 'Get Started', href: '#' }}
+        themeControls={
+          <>
+            <BrandSelect />
+            <ModeToggle />
+          </>
+        }
+      />
+
+      <main id="main-content">
+        <Hero
+          eyebrow={`${niche} · ${resolvedMode}`}
+          title="Build beautiful landing pages faster"
+          description="Switch niche and color mode in the header — the whole page restyles from tokens. Atlas, Folio, and Maison × light/dark. Lucide icons, Instrument Serif display, Inter, JetBrains Mono."
+          align="center"
+          actions={
+            <>
+              <Button size="lg">View Documentation</Button>
+              <Button size="lg" variant="outline">
+                Open Storybook
+              </Button>
+            </>
+          }
+        />
+
+        <Section id="features" tone="muted">
+          <FeatureGrid
+            title="Everything you need"
+            description="Built with modern best practices for performance, accessibility, and developer experience."
+            columns={3}
+          >
+            <FeatureGridItem
+              icon={<Icon icon={Zap} size={ICON_SIZE_FEATURE} />}
+              title="Lightning Fast"
+              description="Optimized for performance with minimal JavaScript and efficient CSS."
+            />
+            <FeatureGridItem
+              icon={<Icon icon={Shield} size={ICON_SIZE_FEATURE} />}
+              title="Accessible"
+              description="WCAG 2.2 AA compliant with proper focus management and ARIA support."
+            />
+            <FeatureGridItem
+              icon={<Icon icon={Palette} size={ICON_SIZE_FEATURE} />}
+              title="Themeable"
+              description="Three niches via CSS variables. Change atlas, folio, or maison without touching components."
+            />
+            <FeatureGridItem
+              icon={<Icon icon={Globe} size={ICON_SIZE_FEATURE} />}
+              title="Responsive"
+              description="Mobile-first design tested at 375px and 1440px breakpoints."
+            />
+            <FeatureGridItem
+              icon={<Icon icon={Lock} size={ICON_SIZE_FEATURE} />}
+              title="Type Safe"
+              description="Full TypeScript support with strict type checking and autocompletion."
+            />
+            <FeatureGridItem
+              icon={<Icon icon={Sparkles} size={ICON_SIZE_FEATURE} />}
+              title="Modern Stack"
+              description="React 19, Tailwind v4, shadcn/ui compose path, and Radix primitives."
+            />
+          </FeatureGrid>
+        </Section>
+
+        <Section id="stats">
+          <Container>
+            <h2 className="font-heading text-3xl font-bold text-center mb-8">
+              Built for scale
+            </h2>
+          </Container>
+          <StatsRow>
+            <StatItem value="50+" label="Components" />
+            <StatItem value="3" label="Niches" />
+            <StatItem value="6" label="Theme variants" />
+            <StatItem value="AA" label="WCAG Compliant" />
+          </StatsRow>
+        </Section>
+
+        <Section id="faq" tone="muted">
+          <FAQ
+            title="Frequently asked questions"
+            description="Find answers to common questions about the design system."
+            items={faqItems}
+          />
+        </Section>
+
+        <CTASection
+          title="Ready to build?"
+          description="Get started with the Acme design system and ship beautiful landing pages faster."
+          tone="muted"
+          actions={
+            <>
+              <Button size="lg">Get Started</Button>
+              <Button size="lg" variant="outline">
+                View on GitHub
+              </Button>
+            </>
+          }
+        />
+      </main>
+
+      <SiteFooter
+        logo={<Logo />}
+        description="A modern design system for building beautiful, accessible landing pages."
+        columns={footerColumns}
+        socialLinks={[
+          {
+            label: 'GitHub',
+            href: '#',
+            icon: <Icon icon={Github} />,
+          },
+          {
+            label: 'Twitter',
+            href: '#',
+            icon: <Icon icon={Twitter} />,
+          },
+        ]}
+        copyright="© 2026 Acme Inc. All rights reserved."
+        legalLinks={[
+          { label: 'Privacy', href: '#' },
+          { label: 'Terms', href: '#' },
+        ]}
+      />
+    </SiteShell>
+  );
+}
+
 export function App() {
   return (
-    <BrandProvider defaultBrand="aurora">
+    <BrandProvider defaultBrand="atlas">
       <ThemeProvider defaultMode="system">
-        <SiteShell>
-          <SiteHeader
-            logo={<Logo />}
-            navItems={navItems}
-            cta={{ label: 'Get Started', href: '#' }}
-            themeControls={
-              <>
-                <BrandSelect />
-                <ModeToggle />
-              </>
-            }
-          />
-
-          <main id="main-content">
-            <Hero
-              eyebrow="Acme Design System v1"
-              title="Build beautiful landing pages faster"
-              description="A versioned, installable design system with React, Tailwind CSS v4, and CSS variable tokens. Multi-brand theming and dark mode included."
-              align="center"
-              actions={
-                <>
-                  <Button size="lg">View Documentation</Button>
-                  <Button size="lg" variant="outline">
-                    Open Storybook
-                  </Button>
-                </>
-              }
-            />
-
-            <Section id="features" tone="muted">
-              <FeatureGrid
-                title="Everything you need"
-                description="Built with modern best practices for performance, accessibility, and developer experience."
-                columns={3}
-              >
-                <FeatureGridItem
-                  icon={<Zap className="h-6 w-6" />}
-                  title="Lightning Fast"
-                  description="Optimized for performance with minimal JavaScript and efficient CSS."
-                />
-                <FeatureGridItem
-                  icon={<Shield className="h-6 w-6" />}
-                  title="Accessible"
-                  description="WCAG 2.2 AA compliant with proper focus management and ARIA support."
-                />
-                <FeatureGridItem
-                  icon={<Palette className="h-6 w-6" />}
-                  title="Themeable"
-                  description="Multi-brand theming with CSS variables. Change brands without touching code."
-                />
-                <FeatureGridItem
-                  icon={<Globe className="h-6 w-6" />}
-                  title="Responsive"
-                  description="Mobile-first design tested at 375px and 1440px breakpoints."
-                />
-                <FeatureGridItem
-                  icon={<Lock className="h-6 w-6" />}
-                  title="Type Safe"
-                  description="Full TypeScript support with strict type checking and autocompletion."
-                />
-                <FeatureGridItem
-                  icon={<Sparkles className="h-6 w-6" />}
-                  title="Modern Stack"
-                  description="React 19, Tailwind v4, shadcn/ui compose path, and Radix primitives."
-                />
-              </FeatureGrid>
-            </Section>
-
-            <Section id="stats">
-              <Container>
-                <h2 className="font-heading text-3xl font-bold text-center mb-8">
-                  Built for scale
-                </h2>
-              </Container>
-              <StatsRow>
-                <StatItem value="50+" label="Components" />
-                <StatItem value="2" label="Brand Themes" />
-                <StatItem value="4" label="Theme Variants" />
-                <StatItem value="AA" label="WCAG Compliant" />
-              </StatsRow>
-            </Section>
-
-            <Section id="faq" tone="muted">
-              <FAQ
-                title="Frequently asked questions"
-                description="Find answers to common questions about the design system."
-                items={faqItems}
-              />
-            </Section>
-
-            <CTASection
-              title="Ready to build?"
-              description="Get started with the Acme design system and ship beautiful landing pages faster."
-              tone="muted"
-              actions={
-                <>
-                  <Button size="lg">Get Started</Button>
-                  <Button size="lg" variant="outline">
-                    View on GitHub
-                  </Button>
-                </>
-              }
-            />
-          </main>
-
-          <SiteFooter
-            logo={<Logo />}
-            description="A modern design system for building beautiful, accessible landing pages."
-            columns={footerColumns}
-            socialLinks={[
-              {
-                label: 'GitHub',
-                href: '#',
-                icon: <Github className="h-5 w-5" />,
-              },
-              {
-                label: 'Twitter',
-                href: '#',
-                icon: <Twitter className="h-5 w-5" />,
-              },
-            ]}
-            copyright="© 2024 Acme Inc. All rights reserved."
-            legalLinks={[
-              { label: 'Privacy', href: '#' },
-              { label: 'Terms', href: '#' },
-            ]}
-          />
-        </SiteShell>
+        <Landing />
       </ThemeProvider>
     </BrandProvider>
   );

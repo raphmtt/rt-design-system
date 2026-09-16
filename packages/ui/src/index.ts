@@ -101,6 +101,8 @@ export type { TextLinkProps } from './components/text-link';
 
 export { ModeToggle, ModeSelect } from './components/mode-toggle';
 export { BrandSelect } from './components/brand-select';
+export { Icon, ICON_SIZE_UI, ICON_SIZE_FEATURE, ICON_STROKE_WIDTH } from './components/icon';
+export type { IconProps } from './components/icon';
 
 // Layout (Phase 3)
 export { Container } from './components/layout/container';

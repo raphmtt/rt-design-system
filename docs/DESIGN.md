@@ -1,6 +1,10 @@
 # Design System Principles
 
-## Visual Identity: "Clear Signal"
+## Visual Identity
+
+Locked niches: **atlas** · **folio** · **maison**, each with light and dark.
+
+The previous “Clear Signal” look (`aurora` / `editorial`, Plus Jakarta Sans, Newsreader, neon dual-hue, mesh) is gone. No compatibility aliases.
 
 ### Core Principles
 
@@ -10,6 +14,8 @@
 4. **Border-first depth** — Elevation via border + soft shadow; dark mode leans on borders
 5. **Identical structure light/dark** — Only tokens change
 6. **Agent-safe** — Everything expressible in tokens + documented variants
+
+See [HOW-TO-THEME.md](./HOW-TO-THEME.md) for how to change colors, fonts, and icons.
 
 ---
 
@@ -22,18 +28,20 @@ Primitive  →  Semantic  →  Component
  (raw)         (role)       (optional)
 ```
 
-1. **Primitive** — Raw values (palette scales, spacing, font sizes). **Never use directly in components.**
-2. **Semantic** — Role-based tokens (`--background`, `--primary`, `--muted`). Components consume these.
-3. **Component** — Optional aliases when semantic is insufficient (`--button-height-lg`).
+1. **Primitive** — Spacing, type families/sizes, radius scale. **Never use color primitives in components.**
+2. **Semantic** — Role-based hex tokens (`--background`, `--primary`, `--muted`). Components consume these.
+3. **Component** — Radius, font roles, section spacing per theme.
 
 ### Theming Axes
 
 | Axis | Attribute | Values |
 |------|-----------|--------|
-| Brand | `data-brand` on `<html>` | `aurora`, `editorial` |
+| Niche | `data-brand` on `<html>` | `atlas`, `folio`, `maison` |
 | Mode | `.dark` class on `<html>` | light (default), dark |
 
-Changing brand or mode **only** remaps CSS variables — **no component rewrites**.
+Changing niche or mode **only** remaps CSS variables — **no component rewrites**.
+
+Default niche is **atlas**. Tailwind maps colors with `var(--…)` (no `hsl()` wrapper).
 
 ---
 
@@ -43,7 +51,7 @@ Changing brand or mode **only** remaps CSS variables — **no component rewrites
 
 | Token | Size | Line-height | Use |
 |-------|------|-------------|-----|
-| `display` | 3rem → 4.5rem | 1.1 | Hero H1 only |
+| `display` | 3rem → 4.5rem | 1.1 | Hero H1 only (`font-display`) |
 | `h1` | 2.25rem | 1.2 | Section titles |
 | `h2` | 1.875rem | 1.25 | Subsections |
 | `h3` | 1.5rem | 1.3 | Card titles |
@@ -53,12 +61,15 @@ Changing brand or mode **only** remaps CSS variables — **no component rewrites
 | `body-sm` | 0.875rem | 1.5 | Meta, captions |
 | `label` | 0.875rem | 1.4 | Form labels |
 
-### Font Families
+### Font Families (all niches)
 
-| Brand | Headings | Body |
-|-------|----------|------|
-| Aurora | Plus Jakarta Sans | Inter |
-| Editorial | Newsreader | Inter |
+| Role | Family |
+|------|--------|
+| Display | Instrument Serif |
+| Heading / body | Inter |
+| Mono | JetBrains Mono |
+
+Hero H1 uses `font-display`. Headings use Inter. Do not swap families per niche.
 
 ---
 
@@ -74,12 +85,13 @@ Changing brand or mode **only** remaps CSS variables — **no component rewrites
 
 ## Radius
 
-| Brand | Base Radius |
+| Niche | Base radius |
 |-------|-------------|
-| Aurora | 0.75rem |
-| Editorial | 0.5rem |
+| atlas | `0.5rem` |
+| folio | `0.375rem` |
+| maison | `0.75rem` |
 
-Derive sm/md/lg/xl as: `calc(var(--radius) * factor)`
+Derive sm/md/lg/xl as: `calc(var(--radius) ± n px)`
 
 ---
 
@@ -107,23 +119,32 @@ Derive sm/md/lg/xl as: `calc(var(--radius) * factor)`
 - Autoplay video backgrounds
 - Parallax scroll
 - Infinite marquee
+- Neon dual-hue / mesh backgrounds
+- Mixed icon packs
 
 ---
 
 ## Color Direction
 
-### Aurora (SaaS/Product)
-- Cool neutrals (zinc/slate)
-- Accent: electric teal-violet (oklch high chroma)
+Semantic hex lives in `design/tokens/themes/*-{light,dark}.json`. Rebuild with `pnpm tokens:build`.
 
-### Editorial (Content/Services)
-- Warm paper neutrals (stone)
-- Accent: deep vermilion or forest green
+| Niche | Character |
+|-------|-----------|
+| atlas | Cartographic ink / navy / paper |
+| folio | Publishing, warm paper, quiet rust |
+| maison | Hospitality, walnut / sage / cream |
 
 ### Contrast Requirements
 
 - **Body text:** 4.5:1 (WCAG AA)
 - **Large text:** 3:1
+- Test all **6** niche × mode combinations
+
+---
+
+## Icons
+
+Lucide only, via `<Icon>` (`strokeWidth` 1.5, `currentColor`, outline). Size **20** (UI) / **24** (features).
 
 ---
 
@@ -132,24 +153,24 @@ Derive sm/md/lg/xl as: `calc(var(--radius) * factor)`
 ### Do
 
 - ✓ Use semantic tokens (`bg-background`, `text-foreground`)
+- ✓ Use `<Icon icon={…} />` for Lucide
 - ✓ Use component variants from props
-- ✓ Test both brands × both modes
+- ✓ Test all three niches × both modes
 - ✓ Use `cn()` for class merging
 - ✓ Keep hit targets ≥ 44×44px
 - ✓ Add focus-visible styles
 
 ### Don't
 
-- ✗ Use raw color values (`bg-zinc-100`)
+- ✗ Use raw color values (`bg-zinc-100`, `#1E3A5F` in components)
 - ✗ Use arbitrary Tailwind values (`w-[437px]`)
 - ✗ Override component internal styles in consumer code
 - ✗ Add animations without reduced-motion support
 - ✗ Skip dark mode testing
+- ✗ Reintroduce aurora / editorial / Jakarta / Newsreader aliases
 
 ---
 
 ## Component Naming
 
 All components use PascalCase. Path: `@acme/ui/components/{ComponentName}`
-
-See the component inventory in the technical design for the full list.

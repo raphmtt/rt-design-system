@@ -1,0 +1,98 @@
+{
+  "semantic": {
+    "background": {
+      "value": "#F8F1E8",
+      "type": "color"
+    },
+    "foreground": {
+      "value": "#2A211C",
+      "type": "color"
+    },
+    "card": {
+      "value": "#FFF8F1",
+      "type": "color"
+    },
+    "cardForeground": {
+      "value": "#2A211C",
+      "type": "color"
+    },
+    "primary": {
+      "value": "#6B4A38",
+      "type": "color"
+    },
+    "primaryForeground": {
+      "value": "#F8F1E8",
+      "type": "color"
+    },
+    "secondary": {
+      "value": "#EFE4D6",
+      "type": "color"
+    },
+    "secondaryForeground": {
+      "value": "#2A211C",
+      "type": "color"
+    },
+    "muted": {
+      "value": "#F1E6D9",
+      "type": "color"
+    },
+    "mutedForeground": {
+      "value": "#6A5B50",
+      "type": "color"
+    },
+    "accent": {
+      "value": "#5F6F52",
+      "type": "color"
+    },
+    "accentForeground": {
+      "value": "#F8F1E8",
+      "type": "color"
+    },
+    "destructive": {
+      "value": "#9B3D32",
+      "type": "color"
+    },
+    "destructiveForeground": {
+      "value": "#FFFFFF",
+      "type": "color"
+    },
+    "border": {
+      "value": "#E0D3C4",
+      "type": "color"
+    },
+    "input": {
+      "value": "#E0D3C4",
+      "type": "color"
+    },
+    "ring": {
+      "value": "#6B4A38",
+      "type": "color"
+    }
+  },
+  "component": {
+    "radius": {
+      "value": "0.75rem",
+      "type": "dimension"
+    },
+    "fontDisplay": {
+      "value": "{font.family.instrument}",
+      "type": "fontFamily"
+    },
+    "fontHeading": {
+      "value": "{font.family.inter}",
+      "type": "fontFamily"
+    },
+    "fontBody": {
+      "value": "{font.family.inter}",
+      "type": "fontFamily"
+    },
+    "fontMono": {
+      "value": "{font.family.jetbrains}",
+      "type": "fontFamily"
+    },
+    "spaceSectionY": {
+      "value": "{space.16}",
+      "type": "dimension"
+    }
+  }
+}

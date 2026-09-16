@@ -25,10 +25,12 @@ Complete this checklist before shipping.
 
 ## Theme Testing
 
-- [ ] Aurora Light
-- [ ] Aurora Dark
-- [ ] Editorial Light (if using)
-- [ ] Editorial Dark (if using)
+- [ ] Atlas Light
+- [ ] Atlas Dark
+- [ ] Folio Light
+- [ ] Folio Dark
+- [ ] Maison Light
+- [ ] Maison Dark
 
 ## Responsive Testing
 

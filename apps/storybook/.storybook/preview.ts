@@ -34,10 +34,11 @@ const preview: Preview = {
   decorators: [
     withThemeByDataAttribute({
       themes: {
-        aurora: 'aurora',
-        editorial: 'editorial',
+        atlas: 'atlas',
+        folio: 'folio',
+        maison: 'maison',
       },
-      defaultTheme: 'aurora',
+      defaultTheme: 'atlas',
       attributeName: 'data-brand',
     }),
     withThemeByClassName({
@@ -50,12 +51,12 @@ const preview: Preview = {
   ],
   globalTypes: {
     brand: {
-      description: 'Brand theme',
-      defaultValue: 'aurora',
+      description: 'Niche theme',
+      defaultValue: 'atlas',
       toolbar: {
-        title: 'Brand',
+        title: 'Niche',
         icon: 'paintbrush',
-        items: ['aurora', 'editorial'],
+        items: ['atlas', 'folio', 'maison'],
         dynamicTitle: true,
       },
     },

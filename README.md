@@ -4,7 +4,7 @@ A versioned, installable landing/sites design system built with React, Tailwind 
 
 ## Features
 
-- 🎨 **Multi-brand theming** — Switch between `aurora` and `editorial` brands
+- 🎨 **Multi-niche theming** — Switch between `atlas`, `folio`, and `maison`
 - 🌙 **Dark mode** — Mandatory on all components
 - 📱 **Responsive** — Mobile-first, tested at 375px and 1440px
 - ♿ **Accessible** — WCAG 2.2 AA compliant
@@ -71,12 +71,12 @@ pnpm typecheck
 
 ## Theming
 
-### Brands
+### Niches
 
 Set `data-brand` on `<html>`:
 
 ```html
-<html data-brand="aurora">  <!-- or "editorial" -->
+<html data-brand="atlas">  <!-- or "folio" | "maison" -->
 ```
 
 ### Modes
@@ -90,6 +90,7 @@ Toggle `.dark` class on `<html>`:
 ## Documentation
 
 - [HUMAN-QUICKSTART.md](./docs/HUMAN-QUICKSTART.md) — Build a landing page in 15 minutes
+- [HOW-TO-THEME.md](./docs/HOW-TO-THEME.md) — Change colors, fonts, and icons
 - [DESIGN.md](./docs/DESIGN.md) — Visual principles and token rules
 - [PERF-A11Y-CHECKLIST.md](./docs/PERF-A11Y-CHECKLIST.md) — Pre-ship checklist
 - [FIGMA-CODE-SYNC.md](./docs/FIGMA-CODE-SYNC.md) — Figma ↔ code sync guide

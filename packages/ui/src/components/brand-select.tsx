@@ -1,7 +1,10 @@
 'use client';
 
-import { Palette } from 'lucide-react';
+import { Compass, BookOpen, Home } from 'lucide-react';
+import type { Brand } from '@acme/tokens';
+import { brandLabels, brands } from '@acme/tokens';
 import { useBrand } from '../providers/brand-provider';
+import { Icon } from './icon';
 import {
   Select,
   SelectContent,
@@ -10,25 +13,29 @@ import {
   SelectValue,
 } from './select';
 
+const brandIcons = {
+  atlas: Compass,
+  folio: BookOpen,
+  maison: Home,
+} as const;
+
 export function BrandSelect() {
   const { brand, setBrand } = useBrand();
 
   return (
-    <Select value={brand} onValueChange={(value) => setBrand(value as 'aurora' | 'editorial')}>
-      <SelectTrigger className="w-[140px]">
-        <SelectValue placeholder="Select brand" />
+    <Select value={brand} onValueChange={(value) => setBrand(value as Brand)}>
+      <SelectTrigger className="w-[160px]" aria-label="Select niche">
+        <SelectValue placeholder="Select niche" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="aurora">
-          <span className="flex items-center gap-2">
-            <Palette className="h-4 w-4" /> Aurora
-          </span>
-        </SelectItem>
-        <SelectItem value="editorial">
-          <span className="flex items-center gap-2">
-            <Palette className="h-4 w-4" /> Editorial
-          </span>
-        </SelectItem>
+        {brands.map((id) => (
+          <SelectItem key={id} value={id}>
+            <span className="flex items-center gap-2">
+              <Icon icon={brandIcons[id]} />
+              {brandLabels[id]}
+            </span>
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );
