@@ -4,6 +4,7 @@ import * as React from 'react';
 import { X } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { Button } from '../button';
+import { Icon } from '../icon';
 
 export interface AnnouncementBarProps extends React.HTMLAttributes<HTMLDivElement> {
   message: React.ReactNode;
@@ -77,7 +78,7 @@ const AnnouncementBar = React.forwardRef<HTMLDivElement, AnnouncementBarProps>(
             onClick={handleDismiss}
             aria-label="Dismiss announcement"
           >
-            <X className="h-4 w-4" />
+            <Icon icon={X} size={16} />
           </Button>
         )}
       </div>

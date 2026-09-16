@@ -33,6 +33,7 @@ Fix all errors before committing.
 - ✓ Use semantic tokens (`bg-background`, `text-foreground`, `border-border`)
 - ✗ Never use raw color values (`bg-zinc-100`, `text-gray-500`)
 - ✗ Never use arbitrary values (`w-[437px]`, `text-[13px]`)
+- ✓ Use `<Icon icon={Name} />` for Lucide (size 20 UI / 24 features, stroke 1.5)
 
 ### Components
 
@@ -198,11 +199,8 @@ pnpm --filter storybook dev  # Check in Storybook
 ### Theme-Aware Styles
 
 ```tsx
-// These automatically switch between light/dark:
+// These automatically switch between light/dark and niches:
 <div className="bg-background text-foreground border-border" />
-
-// For theme-specific overrides:
-<div className="bg-white dark:bg-zinc-900" />
 ```
 
 ---

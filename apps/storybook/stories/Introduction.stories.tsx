@@ -16,12 +16,12 @@ function Introduction() {
           Features
         </h2>
         <ul className="mt-4 space-y-2 text-foreground">
-          <li>✓ Multi-brand theming (aurora, editorial)</li>
+          <li>✓ Multi-niche theming (atlas, folio, maison)</li>
           <li>✓ Dark mode on all components</li>
           <li>✓ Responsive design (375, 768, 1440)</li>
           <li>✓ WCAG 2.2 AA accessibility</li>
           <li>✓ CSS variable tokens</li>
-          <li>✓ Figma kit parity</li>
+          <li>✓ Lucide icons + Instrument Serif / Inter / JetBrains Mono</li>
         </ul>
       </section>
 
@@ -45,7 +45,7 @@ pnpm create @acme landing my-site`}
           Theme Controls
         </h2>
         <p className="mt-2 text-muted-foreground">
-          Use the toolbar above to switch between brands (aurora/editorial) and
+          Use the toolbar above to switch between niches (atlas / folio / maison) and
           modes (light/dark). All components support these theme variations.
         </p>
       </section>

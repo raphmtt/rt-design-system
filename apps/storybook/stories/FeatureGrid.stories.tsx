@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FeatureGrid, FeatureGridItem } from '@acme/ui';
+import { FeatureGrid, FeatureGridItem, Icon, ICON_SIZE_FEATURE } from '@acme/ui';
 import { Zap, Shield, Palette, Globe, Lock, Sparkles } from 'lucide-react';
 
 const meta: Meta<typeof FeatureGrid> = {
@@ -22,32 +22,32 @@ export const ThreeColumns: Story = {
     children: (
       <>
         <FeatureGridItem
-          icon={<Zap className="h-6 w-6" />}
+          icon={<Icon icon={Zap} size={ICON_SIZE_FEATURE} />}
           title="Lightning Fast"
           description="Optimized for performance with minimal JavaScript and efficient rendering."
         />
         <FeatureGridItem
-          icon={<Shield className="h-6 w-6" />}
+          icon={<Icon icon={Shield} size={ICON_SIZE_FEATURE} />}
           title="Accessible"
           description="WCAG 2.2 AA compliant out of the box with proper keyboard navigation."
         />
         <FeatureGridItem
-          icon={<Palette className="h-6 w-6" />}
+          icon={<Icon icon={Palette} size={ICON_SIZE_FEATURE} />}
           title="Themeable"
-          description="Change brands and modes without touching component code."
+          description="Change niches and modes without touching component code."
         />
         <FeatureGridItem
-          icon={<Globe className="h-6 w-6" />}
+          icon={<Icon icon={Globe} size={ICON_SIZE_FEATURE} />}
           title="Responsive"
           description="Mobile-first design that works on every screen size."
         />
         <FeatureGridItem
-          icon={<Lock className="h-6 w-6" />}
+          icon={<Icon icon={Lock} size={ICON_SIZE_FEATURE} />}
           title="Type Safe"
           description="Full TypeScript support with strict type checking."
         />
         <FeatureGridItem
-          icon={<Sparkles className="h-6 w-6" />}
+          icon={<Icon icon={Sparkles} size={ICON_SIZE_FEATURE} />}
           title="Modern Stack"
           description="Built with React 19, Tailwind v4, and the latest best practices."
         />
@@ -63,22 +63,22 @@ export const TwoColumns: Story = {
     children: (
       <>
         <FeatureGridItem
-          icon={<Zap className="h-6 w-6" />}
+          icon={<Icon icon={Zap} size={ICON_SIZE_FEATURE} />}
           title="Fast Development"
           description="Ship features faster with pre-built, customizable components."
         />
         <FeatureGridItem
-          icon={<Shield className="h-6 w-6" />}
+          icon={<Icon icon={Shield} size={ICON_SIZE_FEATURE} />}
           title="Battle Tested"
           description="Used by teams worldwide to build production applications."
         />
         <FeatureGridItem
-          icon={<Palette className="h-6 w-6" />}
+          icon={<Icon icon={Palette} size={ICON_SIZE_FEATURE} />}
           title="Design First"
           description="Figma kit included for seamless designer-developer handoff."
         />
         <FeatureGridItem
-          icon={<Globe className="h-6 w-6" />}
+          icon={<Icon icon={Globe} size={ICON_SIZE_FEATURE} />}
           title="Documentation"
           description="Comprehensive docs and examples to get you started quickly."
         />

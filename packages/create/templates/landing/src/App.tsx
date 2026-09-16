@@ -2,11 +2,11 @@ import { ThemeProvider, BrandProvider } from '@acme/ui';
 
 export function App() {
   return (
-    <BrandProvider defaultBrand="aurora">
+    <BrandProvider defaultBrand="atlas">
       <ThemeProvider defaultMode="system">
         <main className="min-h-screen bg-background text-foreground">
           <div className="container mx-auto px-4 py-16">
-            <h1 className="font-heading text-5xl font-bold">
+            <h1 className="font-display text-5xl font-normal">
               Welcome to Your Landing Page
             </h1>
             <p className="mt-6 text-xl text-muted-foreground max-w-2xl">

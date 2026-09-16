@@ -3,6 +3,7 @@
 import { Moon, Sun, Monitor } from 'lucide-react';
 import { useTheme } from '../providers/theme-provider';
 import { Button } from './button';
+import { Icon } from './icon';
 import {
   Select,
   SelectContent,
@@ -29,12 +30,12 @@ export function ModeToggle() {
       aria-label={`Current mode: ${mode}. Click to change.`}
     >
       {resolvedMode === 'dark' ? (
-        <Moon className="h-5 w-5" />
+        <Icon icon={Moon} />
       ) : (
-        <Sun className="h-5 w-5" />
+        <Icon icon={Sun} />
       )}
       {mode === 'system' && (
-        <Monitor className="h-3 w-3 absolute bottom-1 right-1" />
+        <Icon icon={Monitor} size={12} className="absolute bottom-1 right-1" />
       )}
     </Button>
   );
@@ -51,17 +52,17 @@ export function ModeSelect() {
       <SelectContent>
         <SelectItem value="light">
           <span className="flex items-center gap-2">
-            <Sun className="h-4 w-4" /> Light
+            <Icon icon={Sun} /> Light
           </span>
         </SelectItem>
         <SelectItem value="dark">
           <span className="flex items-center gap-2">
-            <Moon className="h-4 w-4" /> Dark
+            <Icon icon={Moon} /> Dark
           </span>
         </SelectItem>
         <SelectItem value="system">
           <span className="flex items-center gap-2">
-            <Monitor className="h-4 w-4" /> System
+            <Icon icon={Monitor} /> System
           </span>
         </SelectItem>
       </SelectContent>

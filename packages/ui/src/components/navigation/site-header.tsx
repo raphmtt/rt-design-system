@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Menu } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { Button } from '../button';
+import { Icon } from '../icon';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '../sheet';
 import { Container } from '../layout/container';
 
@@ -69,7 +70,7 @@ const SiteHeader = React.forwardRef<HTMLElement, SiteHeaderProps>(
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild className="md:hidden">
                   <Button variant="ghost" size="icon" aria-label="Open menu">
-                    <Menu className="h-5 w-5" />
+                    <Icon icon={Menu} />
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[300px]">

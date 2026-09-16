@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Check } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { Icon } from '../icon';
 import { Container } from '../layout/container';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../card';
 import { Button } from '../button';
@@ -69,9 +70,9 @@ const PricingTier = React.forwardRef<
           <ul className="space-y-3">
             {features.map((feature, index) => (
               <li key={index} className="flex items-start gap-3">
-                <Check
+                <Icon
+                  icon={Check}
                   className={cn(
-                    'h-5 w-5 shrink-0',
                     feature.included
                       ? 'text-primary'
                       : 'text-muted-foreground/40'

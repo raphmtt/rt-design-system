@@ -1,8 +1,7 @@
 'use client';
 
 import * as React from 'react';
-
-type Brand = 'aurora' | 'editorial';
+import { type Brand, brands, migrateBrand } from '@acme/tokens';
 
 interface BrandContextValue {
   brand: Brand;
@@ -21,15 +20,17 @@ export interface BrandProviderProps {
 
 export function BrandProvider({
   children,
-  defaultBrand = 'aurora',
+  defaultBrand = 'atlas',
   storageKey = STORAGE_KEY,
 }: BrandProviderProps) {
   const [brand, setBrandState] = React.useState<Brand>(defaultBrand);
 
   React.useEffect(() => {
-    const stored = localStorage.getItem(storageKey) as Brand | null;
-    if (stored && (stored === 'aurora' || stored === 'editorial')) {
-      setBrandState(stored);
+    const stored = localStorage.getItem(storageKey);
+    const next = migrateBrand(stored);
+    setBrandState(next);
+    if (stored !== next) {
+      localStorage.setItem(storageKey, next);
     }
   }, [storageKey]);
 
@@ -57,3 +58,6 @@ export function useBrand() {
   }
   return context;
 }
+
+export { brands };
+export type { Brand };
