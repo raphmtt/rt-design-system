@@ -86,6 +86,10 @@ function generateCSS() {
       border: semantic.border,
       input: semantic.input,
       ring: semantic.ring,
+      success: semantic.success,
+      'success-foreground': semantic.successForeground,
+      warning: semantic.warning,
+      'warning-foreground': semantic.warningForeground,
     };
 
     for (const [name, token] of Object.entries(tokenMap)) {
@@ -152,6 +156,7 @@ export const tokenNames = [
   'primary', 'primary-foreground', 'secondary', 'secondary-foreground',
   'muted', 'muted-foreground', 'accent', 'accent-foreground',
   'destructive', 'destructive-foreground', 'border', 'input', 'ring',
+  'success', 'success-foreground', 'warning', 'warning-foreground',
   'radius', 'font-display', 'font-heading', 'font-body', 'font-mono', 'space-section-y'
 ];
 `;
@@ -168,6 +173,7 @@ export declare const tokenNames: readonly [
   "primary", "primary-foreground", "secondary", "secondary-foreground",
   "muted", "muted-foreground", "accent", "accent-foreground",
   "destructive", "destructive-foreground", "border", "input", "ring",
+  "success", "success-foreground", "warning", "warning-foreground",
   "radius", "font-display", "font-heading", "font-body", "font-mono", "space-section-y"
 ];
 export type TokenName = (typeof tokenNames)[number];

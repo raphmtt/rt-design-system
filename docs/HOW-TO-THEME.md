@@ -26,7 +26,7 @@ design/tokens/themes/maison-dark.json
 pnpm tokens:build
 ```
 
-3. Components already consume `bg-background`, `text-foreground`, `bg-primary`, etc. Do **not** put raw hex in UI.
+3. Components already consume `bg-background`, `text-foreground`, `bg-primary`, `bg-success`, `bg-warning`, etc. Do **not** put raw hex in UI.
 
 Radius is per niche in the same JSON (`component.radius`):
 

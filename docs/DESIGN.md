@@ -130,9 +130,9 @@ Semantic hex lives in `design/tokens/themes/*-{light,dark}.json`. Rebuild with `
 
 | Niche | Character |
 |-------|-----------|
-| atlas | Cartographic ink / navy / paper |
-| folio | Publishing, warm paper, quiet rust |
-| maison | Hospitality, walnut / sage / cream |
+| atlas | Ink zinc + indigo (Vercel-like) |
+| folio | Copper CTA on paper |
+| maison | Sage on cream |
 
 ### Contrast Requirements
 

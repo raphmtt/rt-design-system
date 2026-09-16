@@ -10,6 +10,7 @@ export declare const tokenNames: readonly [
   "primary", "primary-foreground", "secondary", "secondary-foreground",
   "muted", "muted-foreground", "accent", "accent-foreground",
   "destructive", "destructive-foreground", "border", "input", "ring",
+  "success", "success-foreground", "warning", "warning-foreground",
   "radius", "font-display", "font-heading", "font-body", "font-mono", "space-section-y"
 ];
 export type TokenName = (typeof tokenNames)[number];

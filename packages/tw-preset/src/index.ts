@@ -38,6 +38,14 @@ export const acmePreset = {
         border: 'var(--border)',
         input: 'var(--input)',
         ring: 'var(--ring)',
+        success: {
+          DEFAULT: 'var(--success)',
+          foreground: 'var(--success-foreground)',
+        },
+        warning: {
+          DEFAULT: 'var(--warning)',
+          foreground: 'var(--warning-foreground)',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',

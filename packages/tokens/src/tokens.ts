@@ -16,6 +16,10 @@ export interface ColorTokens {
   border: string;
   input: string;
   ring: string;
+  success: string;
+  successForeground: string;
+  warning: string;
+  warningForeground: string;
 }
 
 export interface SpacingTokens {
