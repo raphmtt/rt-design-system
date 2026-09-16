@@ -29,6 +29,9 @@ importers:
       '@acme/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      lucide-react:
+        specifier: ^0.480.0
+        version: 0.480.0(react@19.3.0)
       react:
         specifier: ^19.1.0
         version: 19.3.0
@@ -78,6 +81,9 @@ importers:
       '@acme/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      lucide-react:
+        specifier: ^0.480.0
+        version: 0.480.0(react@19.3.0)
       react:
         specifier: ^19.1.0
         version: 19.3.0

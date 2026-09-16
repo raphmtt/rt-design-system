@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "storybook build",
+    "build": "STORYBOOK_DISABLE_TELEMETRY=1 storybook build",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx"
   },
@@ -13,6 +13,7 @@
     "@acme/tokens": "workspace:*",
     "@acme/tw-preset": "workspace:*",
     "@acme/ui": "workspace:*",
+    "lucide-react": "^0.480.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
