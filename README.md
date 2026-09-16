@@ -50,22 +50,24 @@ Import styles in your CSS:
 # Install dependencies
 pnpm install
 
-# Build tokens
+# Build tokens (required once)
 pnpm tokens:build
 
-# Run demo site
+# Run demo site (resolves @acme/* packages from source in dev)
 pnpm --filter demo dev
 
 # Run Storybook
 pnpm --filter storybook dev
 
-# Build all packages
+# Build all packages (for production or CI)
 pnpm build
 
 # Lint and typecheck
 pnpm lint
 pnpm typecheck
 ```
+
+> **Note:** In development mode, Vite resolves workspace packages directly from TypeScript source via the `development` export condition. No manual package build is needed before running the demo.
 
 ## Theming
 

@@ -9,6 +9,9 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   release:
     runs-on: ubuntu-latest
+    # TODO: Replace YOUR_ORG with actual GitHub org/user when ready to publish
+    # TODO: Configure NPM_TOKEN secret in repo settings for npm publish
+    # TODO: For GitHub Packages, use GITHUB_TOKEN and set publishConfig.registry in package.json
     if: github.repository_owner == 'YOUR_ORG'
     
     steps:

@@ -27,6 +27,20 @@ Open http://localhost:3000 to see your landing page.
 
 ---
 
+## Developing in the Monorepo
+
+If you're working in this monorepo, the demo resolves packages from TypeScript source directly (no build step needed):
+
+```bash
+pnpm install
+pnpm tokens:build  # Required once for CSS variables
+pnpm --filter demo dev
+```
+
+> Vite uses the `development` export condition to resolve `@acme/*` packages from source. This enables HMR across package boundaries.
+
+---
+
 ## Option 2: Add to Existing Project
 
 ### 1. Install Packages
