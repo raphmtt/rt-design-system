@@ -1,0 +1,28 @@
+{
+  "name": "@acme/eslint-config",
+  "version": "0.1.0",
+  "description": "ESLint configuration for the Acme design system",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./react": "./react.js"
+  },
+  "files": [
+    "*.js"
+  ],
+  "scripts": {
+    "lint": "echo 'No lint for eslint-config'",
+    "typecheck": "echo 'No typecheck for eslint-config'",
+    "build": "echo 'No build for eslint-config'"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0"
+  }
+}

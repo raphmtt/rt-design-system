@@ -1,5 +1,108 @@
-# rt-design-system
+# Acme Design System
 
-Design system frontend (DEV-4) — React + Tailwind v4 + shadcn + CSS tokens.
+A versioned, installable landing/sites design system built with React, Tailwind CSS v4, shadcn/ui compose path, and CSS variable tokens.
 
-See Notion DEV-4 and Architect technical design for scope.
+## Features
+
+- 🎨 **Multi-brand theming** — Switch between `aurora` and `editorial` brands
+- 🌙 **Dark mode** — Mandatory on all components
+- 📱 **Responsive** — Mobile-first, tested at 375px and 1440px
+- ♿ **Accessible** — WCAG 2.2 AA compliant
+- 🎯 **Token-based** — CSS variables for easy customization
+- 📦 **Installable packages** — Use via npm or scaffold with CLI
+
+## Quick Start
+
+### Option 1: Create CLI
+
+```bash
+pnpm create @acme landing my-site
+cd my-site
+pnpm install
+pnpm dev
+```
+
+### Option 2: Install Packages
+
+```bash
+pnpm add @acme/ui @acme/tokens @acme/tw-preset
+```
+
+Import styles in your CSS:
+
+```css
+@import "@acme/tw-preset/styles.css";
+```
+
+## Packages
+
+| Package | Description |
+|---------|-------------|
+| `@acme/tokens` | Design tokens (CSS variables + JS types) |
+| `@acme/tw-preset` | Tailwind CSS preset and styles |
+| `@acme/ui` | React components |
+| `@acme/eslint-config` | ESLint configuration |
+| `@acme/create` | CLI scaffolding tool |
+
+## Development
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build tokens
+pnpm tokens:build
+
+# Run demo site
+pnpm --filter demo dev
+
+# Run Storybook
+pnpm --filter storybook dev
+
+# Build all packages
+pnpm build
+
+# Lint and typecheck
+pnpm lint
+pnpm typecheck
+```
+
+## Theming
+
+### Brands
+
+Set `data-brand` on `<html>`:
+
+```html
+<html data-brand="aurora">  <!-- or "editorial" -->
+```
+
+### Modes
+
+Toggle `.dark` class on `<html>`:
+
+```html
+<html class="dark">
+```
+
+## Documentation
+
+- [HUMAN-QUICKSTART.md](./docs/HUMAN-QUICKSTART.md) — Build a landing page in 15 minutes
+- [DESIGN.md](./docs/DESIGN.md) — Visual principles and token rules
+- [PERF-A11Y-CHECKLIST.md](./docs/PERF-A11Y-CHECKLIST.md) — Pre-ship checklist
+- [FIGMA-CODE-SYNC.md](./docs/FIGMA-CODE-SYNC.md) — Figma ↔ code sync guide
+- [AGENTS.md](./docs/AGENTS.md) — Instructions for AI agents
+
+## Tech Stack
+
+- React 19 + TypeScript strict
+- Tailwind CSS v4
+- shadcn/ui (compose path)
+- Radix UI primitives
+- Storybook 8+
+- Vite
+- pnpm workspaces + Turborepo
+
+## License
+
+MIT

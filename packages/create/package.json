@@ -1,0 +1,31 @@
+{
+  "name": "@acme/create",
+  "version": "0.1.0",
+  "description": "CLI to scaffold new Acme design system projects",
+  "type": "module",
+  "bin": {
+    "create-acme": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.2",
+    "@types/prompts": "^2.4.9",
+    "typescript": "^5.8.2"
+  }
+}

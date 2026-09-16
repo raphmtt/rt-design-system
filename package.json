@@ -1,0 +1,27 @@
+{
+  "name": "rt-design-system",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Design System Frontend - React + Tailwind v4 + shadcn + CSS tokens",
+  "packageManager": "pnpm@10.33.3",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "test": "turbo test",
+    "tokens:build": "pnpm --filter @acme/tokens build",
+    "tokens:check": "pnpm tokens:build && git diff --exit-code packages/tokens/dist",
+    "clean": "turbo clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css}\""
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.12",
+    "prettier": "^3.4.2",
+    "turbo": "^2.5.3"
+  }
+}
