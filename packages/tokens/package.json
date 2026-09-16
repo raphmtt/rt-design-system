@@ -1,0 +1,31 @@
+{
+  "name": "@acme/tokens",
+  "version": "0.1.0",
+  "description": "Design tokens for the Acme design system",
+  "type": "module",
+  "main": "./dist/js/index.js",
+  "types": "./dist/js/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/js/index.d.ts",
+      "import": "./dist/js/index.js"
+    },
+    "./css": "./dist/css/variables.css",
+    "./css/*": "./dist/css/*",
+    "./themes/*": "./dist/themes/*"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node --experimental-vm-modules scripts/build-tokens.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'No lint for tokens'",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.3.3",
+    "@tokens-studio/sd-transforms": "^1.2.8",
+    "typescript": "^5.8.2"
+  }
+}

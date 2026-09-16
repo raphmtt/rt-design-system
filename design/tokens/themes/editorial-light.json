@@ -1,0 +1,27 @@
+{
+  "semantic": {
+    "background": { "value": "{color.stone.50}", "type": "color" },
+    "foreground": { "value": "{color.stone.900}", "type": "color" },
+    "card": { "value": "{color.white}", "type": "color" },
+    "cardForeground": { "value": "{color.stone.900}", "type": "color" },
+    "primary": { "value": "{color.emerald.700}", "type": "color" },
+    "primaryForeground": { "value": "{color.white}", "type": "color" },
+    "secondary": { "value": "{color.stone.100}", "type": "color" },
+    "secondaryForeground": { "value": "{color.stone.900}", "type": "color" },
+    "muted": { "value": "{color.stone.100}", "type": "color" },
+    "mutedForeground": { "value": "{color.stone.500}", "type": "color" },
+    "accent": { "value": "{color.amber.100}", "type": "color" },
+    "accentForeground": { "value": "{color.amber.900}", "type": "color" },
+    "destructive": { "value": "{color.red.600}", "type": "color" },
+    "destructiveForeground": { "value": "{color.white}", "type": "color" },
+    "border": { "value": "{color.stone.200}", "type": "color" },
+    "input": { "value": "{color.stone.200}", "type": "color" },
+    "ring": { "value": "{color.emerald.600}", "type": "color" }
+  },
+  "component": {
+    "radius": { "value": "0.5rem", "type": "dimension" },
+    "fontHeading": { "value": "{font.family.newsreader}", "type": "fontFamily" },
+    "fontBody": { "value": "{font.family.inter}", "type": "fontFamily" },
+    "spaceSectionY": { "value": "{space.16}", "type": "dimension" }
+  }
+}

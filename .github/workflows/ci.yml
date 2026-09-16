@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: pnpm/action-setup@v4
+          
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Build tokens
+        run: pnpm tokens:build
+        
+      - name: Check token drift
+        run: git diff --exit-code packages/tokens/dist || (echo "Token CSS out of sync. Run 'pnpm tokens:build' and commit." && exit 1)
+        
+      - name: Lint
+        run: pnpm lint
+        
+      - name: Type check
+        run: pnpm typecheck
+        
+      - name: Build all packages
+        run: pnpm build
+        env:
+          CI: true

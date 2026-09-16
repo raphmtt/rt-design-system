@@ -1,0 +1,36 @@
+{
+  "name": "@acme/tw-preset",
+  "version": "0.1.0",
+  "description": "Tailwind CSS preset and styles for the Acme design system",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "development": "./src/index.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./styles.css"
+  },
+  "files": [
+    "dist",
+    "styles.css"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'No lint for tw-preset'",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@acme/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.6",
+    "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.0.0"
+  }
+}
