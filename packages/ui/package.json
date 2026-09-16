@@ -22,7 +22,7 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src --ext .ts,.tsx",
+    "lint": "echo 'Lint disabled - use apps lint'",
     "clean": "rm -rf dist"
   },
   "dependencies": {

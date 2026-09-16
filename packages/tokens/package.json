@@ -18,7 +18,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "node scripts/build-tokens.js",
+    "build": "node --experimental-vm-modules scripts/build-tokens.js",
     "typecheck": "tsc --noEmit",
     "lint": "echo 'No lint for tokens'",
     "clean": "rm -rf dist"
