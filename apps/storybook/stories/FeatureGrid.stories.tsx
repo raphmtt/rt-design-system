@@ -75,7 +75,7 @@ export const TwoColumns: Story = {
         <FeatureGridItem
           icon={<Icon icon={Palette} size={ICON_SIZE_FEATURE} />}
           title="Design First"
-          description="Figma kit included for seamless designer-developer handoff."
+          description="Penpot kit included for seamless designer-developer handoff."
         />
         <FeatureGridItem
           icon={<Icon icon={Globe} size={ICON_SIZE_FEATURE} />}

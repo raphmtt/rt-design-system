@@ -93,7 +93,8 @@ Toggle `.dark` class on `<html>`:
 - [HOW-TO-THEME.md](./docs/HOW-TO-THEME.md) — Change colors, fonts, and icons
 - [DESIGN.md](./docs/DESIGN.md) — Visual principles and token rules
 - [PERF-A11Y-CHECKLIST.md](./docs/PERF-A11Y-CHECKLIST.md) — Pre-ship checklist
-- [FIGMA-CODE-SYNC.md](./docs/FIGMA-CODE-SYNC.md) — Figma ↔ code sync guide
+- [PENPOT-CODE-SYNC.md](./docs/PENPOT-CODE-SYNC.md) — Penpot ↔ code sync guide
+- [PENPOT-COMPONENT-PARITY.md](./docs/PENPOT-COMPONENT-PARITY.md) — Penpot ↔ `packages/ui` component status
 - [AGENTS.md](./docs/AGENTS.md) — Instructions for AI agents
 
 ## Tech Stack

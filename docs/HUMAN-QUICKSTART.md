@@ -189,7 +189,7 @@ Or use the BrandProvider:
 <BrandProvider defaultBrand="folio">
 ```
 
-Niches: `atlas` (default), `folio`, `maison`. Stored `aurora` / `editorial` ids migrate to `atlas`.
+Niches: `atlas` (default), `folio`, `maison`.
 
 ### Change Mode
 
@@ -262,4 +262,4 @@ Before launching, complete the checklist in `PERF-A11Y-CHECKLIST.md`:
 - **Storybook:** See all components and their variants
 - **DESIGN.md:** Visual principles and token rules
 - **HOW-TO-THEME.md:** Change colors, fonts, and icons
-- **FIGMA-CODE-SYNC.md:** For designers working with the Figma kit
+- **PENPOT-CODE-SYNC.md:** For designers working with the Penpot kit

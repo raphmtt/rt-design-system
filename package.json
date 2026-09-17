@@ -15,6 +15,7 @@
     "test": "turbo test",
     "tokens:build": "pnpm --filter @acme/tokens build",
     "tokens:check": "pnpm tokens:build && git diff --exit-code packages/tokens/dist",
+    "tokens:check-design": "pnpm --filter @acme/tokens check-design",
     "clean": "turbo clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css}\""

@@ -4,7 +4,7 @@
 
 Locked niches: **atlas** · **folio** · **maison**, each with light and dark.
 
-The previous “Clear Signal” look (`aurora` / `editorial`, Plus Jakarta Sans, Newsreader, neon dual-hue, mesh) is gone. No compatibility aliases.
+The previous “Clear Signal” look (Plus Jakarta Sans, Newsreader, neon dual-hue, mesh) is gone. No compatibility aliases.
 
 ### Core Principles
 
@@ -126,7 +126,7 @@ Derive sm/md/lg/xl as: `calc(var(--radius) ± n px)`
 
 ## Color Direction
 
-Semantic hex lives in `design/tokens/themes/*-{light,dark}.json`. Rebuild with `pnpm tokens:build`.
+Semantic hex lives in `design/tokens/themes/*-{light,dark}.json` (canonical approved copy: `packages/tokens/approved-semantic-hex.json`). Rebuild with `pnpm tokens:build`; check design sync with `pnpm tokens:check-design`.
 
 | Niche | Character |
 |-------|-----------|
@@ -167,7 +167,7 @@ Lucide only, via `<Icon>` (`strokeWidth` 1.5, `currentColor`, outline). Size **2
 - ✗ Override component internal styles in consumer code
 - ✗ Add animations without reduced-motion support
 - ✗ Skip dark mode testing
-- ✗ Reintroduce aurora / editorial / Jakarta / Newsreader aliases
+- ✗ Reintroduce deprecated theme names, Jakarta, or Newsreader aliases
 
 ---
 

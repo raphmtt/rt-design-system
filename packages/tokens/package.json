@@ -19,6 +19,7 @@
   ],
   "scripts": {
     "build": "node --experimental-vm-modules scripts/build-tokens.js",
+    "check-design": "node scripts/check-design.js",
     "typecheck": "tsc --noEmit",
     "lint": "echo 'No lint for tokens'",
     "clean": "rm -rf dist"

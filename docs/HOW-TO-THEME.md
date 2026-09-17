@@ -2,7 +2,7 @@
 
 Change **colors**, **fonts**, and **icons** without rewriting components.
 
-Theme contract: `data-brand="atlas|folio|maison"` + `.dark` on `<html>`. There are no aliases for the old `aurora` / `editorial` ids.
+Theme contract: `data-brand="atlas|folio|maison"` + `.dark` on `<html>`. There are no aliases for earlier brand ids.
 
 ---
 
@@ -50,7 +50,7 @@ Or:
 </BrandProvider>
 ```
 
-`BrandSelect` + `ModeToggle` restyle the **full page**. Old `localStorage` values `aurora` / `editorial` migrate to `atlas`.
+`BrandSelect` + `ModeToggle` restyle the **full page**. Old stored brand ids migrate to `atlas`.
 
 ---
 
