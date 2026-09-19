@@ -55,7 +55,7 @@ function resolveReferences(value, primitives) {
 
 function generateCSS() {
   const primitives = flattenTokens(primitiveTokens);
-  let css = '/* Acme Design System - Generated Tokens */\n\n';
+  let css = '/* RTDS Design System - Generated Tokens */\n\n';
 
   for (const themeName of themes) {
     const themeTokens = JSON.parse(
@@ -130,7 +130,7 @@ function generateCSS() {
 }
 
 function generateJS() {
-  const js = `// Acme Design System - Generated Token Types
+  const js = `// RTDS Design System - Generated Token Types
 export const brands = ['atlas', 'folio', 'maison'];
 export const modes = ['light', 'dark'];
 export const brandLabels = {

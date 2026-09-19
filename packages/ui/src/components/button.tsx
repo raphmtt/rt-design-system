@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Slot } from '@radix-ui/react-slot';
+import { Button as BaseButton } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
@@ -33,26 +33,40 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends Omit<React.ComponentPropsWithoutRef<typeof BaseButton>, 'className'>,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
+  className?: string;
   loading?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, fullWidth, asChild = false, loading, children, disabled, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button';
+const Button = React.forwardRef<HTMLElement, ButtonProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      fullWidth,
+      loading = false,
+      children,
+      disabled,
+      focusableWhenDisabled,
+      ...props
+    },
+    ref
+  ) => {
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, fullWidth, className }))}
-        ref={ref}
-        disabled={disabled || loading}
+      <BaseButton
         {...props}
+        ref={ref}
+        className={cn(buttonVariants({ variant, size, fullWidth }), className)}
+        disabled={disabled || loading}
+        focusableWhenDisabled={focusableWhenDisabled ?? loading}
+        aria-busy={loading || undefined}
       >
         {loading ? (
           <>
             <svg
-              className="animate-spin -ml-1 mr-2 h-4 w-4"
+              className="mr-2 -ml-1 h-4 w-4 animate-spin"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -77,7 +91,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ) : (
           children
         )}
-      </Comp>
+      </BaseButton>
     );
   }
 );

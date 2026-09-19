@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FeatureGrid, FeatureGridItem, Icon, ICON_SIZE_FEATURE } from '@acme/ui';
+import { FeatureGrid, FeatureGridItem, Icon, ICON_SIZE_FEATURE } from '@rtds/ui';
 import { Zap, Shield, Palette, Globe, Lock, Sparkles } from 'lucide-react';
 
 const meta: Meta<typeof FeatureGrid> = {

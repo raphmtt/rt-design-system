@@ -30,8 +30,14 @@ const preview: Preview = {
       defaultViewport: 'desktop',
     },
     backgrounds: { disable: true },
+    layout: 'centered',
   },
   decorators: [
+    (Story) => (
+      <div className="flex min-h-full w-full items-center justify-center bg-background p-8 text-foreground">
+        <Story />
+      </div>
+    ),
     withThemeByDataAttribute({
       themes: {
         atlas: 'atlas',

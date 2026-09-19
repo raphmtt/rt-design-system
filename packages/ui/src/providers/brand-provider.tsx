@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { type Brand, brands, migrateBrand } from '@acme/tokens';
+import { type Brand, brands, migrateBrand } from '@rtds/tokens';
 
 interface BrandContextValue {
   brand: Brand;
@@ -10,7 +10,7 @@ interface BrandContextValue {
 
 const BrandContext = React.createContext<BrandContextValue | undefined>(undefined);
 
-const STORAGE_KEY = 'acme-brand';
+const STORAGE_KEY = 'rtds-brand';
 
 export interface BrandProviderProps {
   children: React.ReactNode;

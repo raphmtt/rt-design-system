@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Menu } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { Button } from '../button';
+import { Button, buttonVariants } from '../button';
 import { Icon } from '../icon';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '../sheet';
 import { Container } from '../layout/container';
@@ -62,9 +62,12 @@ const SiteHeader = React.forwardRef<HTMLElement, SiteHeaderProps>(
               )}
 
               {cta && (
-                <Button asChild className="hidden sm:inline-flex">
-                  <a href={cta.href}>{cta.label}</a>
-                </Button>
+                <a
+                  href={cta.href}
+                  className={cn(buttonVariants(), 'hidden sm:inline-flex')}
+                >
+                  {cta.label}
+                </a>
               )}
 
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -87,11 +90,13 @@ const SiteHeader = React.forwardRef<HTMLElement, SiteHeaderProps>(
                       </a>
                     ))}
                     {cta && (
-                      <Button asChild className="mt-4">
-                        <a href={cta.href} onClick={() => setIsOpen(false)}>
-                          {cta.label}
-                        </a>
-                      </Button>
+                      <a
+                        href={cta.href}
+                        className={cn(buttonVariants(), 'mt-4')}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {cta.label}
+                      </a>
                     )}
                     {themeControls && (
                       <div className="flex items-center gap-2 mt-4 pt-4 border-t">

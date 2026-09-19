@@ -173,4 +173,4 @@ Lucide only, via `<Icon>` (`strokeWidth` 1.5, `currentColor`, outline). Size **2
 
 ## Component Naming
 
-All components use PascalCase. Path: `@acme/ui/components/{ComponentName}`
+All components use PascalCase. Path: `@rtds/ui/components/{ComponentName}`

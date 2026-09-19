@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Hero, Button } from '@acme/ui';
+import { Hero, Button } from '@rtds/ui';
 
 const meta: Meta<typeof Hero> = {
   title: 'Marketing/Hero',

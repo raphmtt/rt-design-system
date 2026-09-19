@@ -10,15 +10,15 @@
     "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
-    "@acme/tokens": "workspace:*",
-    "@acme/tw-preset": "workspace:*",
-    "@acme/ui": "workspace:*",
+    "@rtds/tokens": "workspace:*",
+    "@rtds/tw-preset": "workspace:*",
+    "@rtds/ui": "workspace:*",
     "lucide-react": "^0.480.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
+    "@rtds/eslint-config": "workspace:*",
     "@storybook/addon-a11y": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-themes": "^8.6.12",

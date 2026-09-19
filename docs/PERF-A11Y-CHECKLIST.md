@@ -1,6 +1,6 @@
 # Performance & Accessibility Checklist
 
-Complete this checklist before shipping any landing page built with the Acme design system.
+Complete this checklist before shipping any landing page built with the RTDS design system.
 
 ---
 

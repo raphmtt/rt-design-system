@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CTASection, Button } from '@acme/ui';
+import { CTASection, Button } from '@rtds/ui';
 
 const meta: Meta<typeof CTASection> = {
   title: 'Marketing/CTASection',

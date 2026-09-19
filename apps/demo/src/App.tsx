@@ -20,8 +20,8 @@ import {
   ICON_SIZE_FEATURE,
   useBrand,
   useTheme,
-} from '@acme/ui';
-import { brandLabels } from '@acme/tokens';
+} from '@rtds/ui';
+import { brandLabels } from '@rtds/tokens';
 import {
   Zap,
   Shield,
@@ -35,11 +35,12 @@ import {
 
 const Logo = () => (
   <a href="/" className="font-heading font-bold text-xl text-foreground">
-    Acme
+    RTDS
   </a>
 );
 
 const navItems = [
+  { label: 'Button', href: '#button-poc' },
   { label: 'Features', href: '#features' },
   { label: 'Stats', href: '#stats' },
   { label: 'FAQ', href: '#faq' },
@@ -130,6 +131,30 @@ function Landing() {
           }
         />
 
+        <Section id="button-poc">
+          <Container>
+            <h2 className="font-heading text-3xl font-bold text-center mb-3">Button</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8">
+              1:1 Base UI wrapper styled with CSS tokens. Switch {niche} × {resolvedMode} in
+              the header — these restyle with no code edits.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Button>Default</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="destructive">Destructive</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="link">Link</Button>
+            </div>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+              <Button size="sm">Small</Button>
+              <Button size="lg">Large</Button>
+              <Button loading>Loading</Button>
+              <Button disabled>Disabled</Button>
+            </div>
+          </Container>
+        </Section>
+
         <Section id="features" tone="muted">
           <FeatureGrid
             title="Everything you need"
@@ -193,7 +218,7 @@ function Landing() {
 
         <CTASection
           title="Ready to build?"
-          description="Get started with the Acme design system and ship beautiful landing pages faster."
+          description="Get started with the RTDS design system and ship beautiful landing pages faster."
           tone="muted"
           actions={
             <>
@@ -222,7 +247,7 @@ function Landing() {
             icon: <Icon icon={Twitter} />,
           },
         ]}
-        copyright="© 2026 Acme Inc. All rights reserved."
+        copyright="© 2026 RTDS. All rights reserved."
         legalLinks={[
           { label: 'Privacy', href: '#' },
           { label: 'Terms', href: '#' },

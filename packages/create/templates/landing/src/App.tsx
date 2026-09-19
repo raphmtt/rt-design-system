@@ -1,4 +1,4 @@
-import { ThemeProvider, BrandProvider } from '@acme/ui';
+import { ThemeProvider, BrandProvider } from '@rtds/ui';
 
 export function App() {
   return (
@@ -10,8 +10,8 @@ export function App() {
               Welcome to Your Landing Page
             </h1>
             <p className="mt-6 text-xl text-muted-foreground max-w-2xl">
-              This project was scaffolded with the Acme design system. 
-              Start building your landing page using the components from @acme/ui.
+              This project was scaffolded with the RTDS design system. 
+              Start building your landing page using the components from @rtds/ui.
             </p>
             <div className="mt-8 flex gap-4">
               <button className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity">

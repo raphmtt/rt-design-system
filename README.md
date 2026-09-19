@@ -1,6 +1,6 @@
-# Acme Design System
+# RTDS Design System
 
-A versioned, installable landing/sites design system built with React, Tailwind CSS v4, shadcn/ui compose path, and CSS variable tokens.
+A versioned, installable landing/sites design system built with React, Tailwind CSS v4, BaseUI and CSS variable tokens.
 
 ## Features
 
@@ -16,7 +16,7 @@ A versioned, installable landing/sites design system built with React, Tailwind 
 ### Option 1: Create CLI
 
 ```bash
-pnpm create @acme landing my-site
+pnpm create @rtds landing my-site
 cd my-site
 pnpm install
 pnpm dev
@@ -25,24 +25,24 @@ pnpm dev
 ### Option 2: Install Packages
 
 ```bash
-pnpm add @acme/ui @acme/tokens @acme/tw-preset
+pnpm add @rtds/ui @rtds/tokens @rtds/tw-preset
 ```
 
 Import styles in your CSS:
 
 ```css
-@import "@acme/tw-preset/styles.css";
+@import "@rtds/tw-preset/styles.css";
 ```
 
 ## Packages
 
 | Package | Description |
 |---------|-------------|
-| `@acme/tokens` | Design tokens (CSS variables + JS types) |
-| `@acme/tw-preset` | Tailwind CSS preset and styles |
-| `@acme/ui` | React components |
-| `@acme/eslint-config` | ESLint configuration |
-| `@acme/create` | CLI scaffolding tool |
+| `@rtds/tokens` | Design tokens (CSS variables + JS types) |
+| `@rtds/tw-preset` | Tailwind CSS preset and styles |
+| `@rtds/ui` | React components |
+| `@rtds/eslint-config` | ESLint configuration |
+| `@rtds/create` | CLI scaffolding tool |
 
 ## Development
 
@@ -53,7 +53,7 @@ pnpm install
 # Build tokens (required once)
 pnpm tokens:build
 
-# Run demo site (resolves @acme/* packages from source in dev)
+# Run demo site (resolves @rtds/* packages from source in dev)
 pnpm --filter demo dev
 
 # Run Storybook
@@ -94,14 +94,15 @@ Toggle `.dark` class on `<html>`:
 - [DESIGN.md](./docs/DESIGN.md) — Visual principles and token rules
 - [PERF-A11Y-CHECKLIST.md](./docs/PERF-A11Y-CHECKLIST.md) — Pre-ship checklist
 - [FIGMA-CODE-SYNC.md](./docs/FIGMA-CODE-SYNC.md) — Figma ↔ code sync guide
+- [ADR-001-base-ui-wrappers.md](./docs/ADR-001-base-ui-wrappers.md) — FINAL: 1:1 Base UI wrappers (Button PoC)
 - [AGENTS.md](./docs/AGENTS.md) — Instructions for AI agents
 
 ## Tech Stack
 
 - React 19 + TypeScript strict
 - Tailwind CSS v4
-- shadcn/ui (compose path)
-- Radix UI primitives
+- Base UI (`@base-ui/react`) — 1:1 wrappers; Button is the PoC ([ADR-001](./docs/ADR-001-base-ui-wrappers.md))
+- Remaining inventory still on Radix until rolled out the same way
 - Storybook 8+
 - Vite
 - pnpm workspaces + Turborepo

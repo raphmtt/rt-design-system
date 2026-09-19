@@ -1,4 +1,4 @@
-@import "@acme/tw-preset/styles.css";
+@import "@rtds/tw-preset/styles.css";
 
-/* Scan node_modules/@acme/ui source for Tailwind classes */
-@source "../../node_modules/@acme/ui/dist/**/*.js";
+/* Scan node_modules/@rtds/ui source for Tailwind classes */
+@source "../../node_modules/@rtds/ui/dist/**/*.js";

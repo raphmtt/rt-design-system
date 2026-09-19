@@ -13,7 +13,7 @@
     "lint": "turbo lint",
     "typecheck": "turbo typecheck",
     "test": "turbo test",
-    "tokens:build": "pnpm --filter @acme/tokens build",
+    "tokens:build": "pnpm --filter @rtds/tokens build",
     "tokens:check": "pnpm tokens:build && git diff --exit-code packages/tokens/dist",
     "clean": "turbo clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css}\"",

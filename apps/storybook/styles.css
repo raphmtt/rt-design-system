@@ -1,5 +1,5 @@
-@import "@acme/tw-preset/styles.css";
+@import "@rtds/tw-preset/styles.css";
 
-/* Scan @acme/ui source and stories for Tailwind classes */
-@source "../../../packages/ui/src/**/*.{ts,tsx}";
+/* styles.css lives in apps/storybook/ (not src/) — two levels up to the repo root */
+@source "../../packages/ui/src/**/*.{ts,tsx}";
 @source "./stories/**/*.{ts,tsx}";

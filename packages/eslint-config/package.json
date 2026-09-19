@@ -1,7 +1,7 @@
 {
-  "name": "@acme/eslint-config",
+  "name": "@rtds/eslint-config",
   "version": "0.1.0",
-  "description": "ESLint configuration for the Acme design system",
+  "description": "ESLint configuration for the RTDS design system",
   "type": "module",
   "main": "./index.js",
   "exports": {

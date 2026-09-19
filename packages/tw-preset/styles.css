@@ -1,8 +1,11 @@
-/* Acme Design System - Tailwind CSS Entry */
-@import "@acme/tokens/css/variables.css";
+/* RTDS Design System - Tailwind CSS Entry */
+@import "@rtds/tokens/css/variables.css";
 
 /* Tailwind v4 imports */
 @import "tailwindcss";
+
+/* Always generate utilities used by @rtds/ui (Storybook, demo, apps). */
+@source "../ui/src/**/*.{ts,tsx}";
 
 /* Theme inline mappings for Tailwind v4 — hex CSS vars, no hsl() wrapper */
 @theme inline {

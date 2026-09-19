@@ -15,7 +15,7 @@ Build a landing page in 15 minutes without an AI agent.
 
 ```bash
 # Scaffold a new landing page project
-pnpm create @acme landing my-site
+pnpm create @rtds landing my-site
 
 # Install and run
 cd my-site
@@ -37,7 +37,7 @@ pnpm tokens:build  # Required once for CSS variables
 pnpm --filter demo dev
 ```
 
-> Vite uses the `development` export condition to resolve `@acme/*` packages from source. This enables HMR across package boundaries.
+> Vite uses the `development` export condition to resolve `@rtds/*` packages from source. This enables HMR across package boundaries.
 
 ---
 
@@ -46,7 +46,7 @@ pnpm --filter demo dev
 ### 1. Install Packages
 
 ```bash
-pnpm add @acme/ui @acme/tokens @acme/tw-preset
+pnpm add @rtds/ui @rtds/tokens @rtds/tw-preset
 ```
 
 ### 2. Import Styles
@@ -54,7 +54,7 @@ pnpm add @acme/ui @acme/tokens @acme/tw-preset
 In your main CSS file:
 
 ```css
-@import "@acme/tw-preset/styles.css";
+@import "@rtds/tw-preset/styles.css";
 ```
 
 ### 3. Add Providers
@@ -62,7 +62,7 @@ In your main CSS file:
 Wrap your app with theme providers:
 
 ```tsx
-import { ThemeProvider, BrandProvider } from '@acme/ui';
+import { ThemeProvider, BrandProvider } from '@rtds/ui';
 
 function App() {
   return (
@@ -82,7 +82,7 @@ function App() {
 ### 1. Start with Layout
 
 ```tsx
-import { SiteShell, SiteHeader, SiteFooter, Container } from '@acme/ui';
+import { SiteShell, SiteHeader, SiteFooter, Container } from '@rtds/ui';
 
 function LandingPage() {
   return (
@@ -109,7 +109,7 @@ function LandingPage() {
 ### 2. Add Hero Section
 
 ```tsx
-import { Hero, Button } from '@acme/ui';
+import { Hero, Button } from '@rtds/ui';
 
 <Hero
   eyebrow="New in 2024"
@@ -127,7 +127,7 @@ import { Hero, Button } from '@acme/ui';
 ### 3. Add Features
 
 ```tsx
-import { Section, FeatureGrid, FeatureGridItem, Icon, ICON_SIZE_FEATURE } from '@acme/ui';
+import { Section, FeatureGrid, FeatureGridItem, Icon, ICON_SIZE_FEATURE } from '@rtds/ui';
 import { Zap, Shield, Palette } from 'lucide-react';
 
 <Section id="features" tone="muted">
@@ -157,7 +157,7 @@ import { Zap, Shield, Palette } from 'lucide-react';
 ### 4. Add CTA Section
 
 ```tsx
-import { CTASection, Button } from '@acme/ui';
+import { CTASection, Button } from '@rtds/ui';
 
 <CTASection
   title="Ready to get started?"
@@ -208,7 +208,7 @@ Or use the ThemeProvider:
 ### Add Theme Controls
 
 ```tsx
-import { ModeToggle, BrandSelect } from '@acme/ui';
+import { ModeToggle, BrandSelect } from '@rtds/ui';
 
 // In your header or settings
 <ModeToggle />
