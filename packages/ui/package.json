@@ -15,10 +15,16 @@
       "types": "./dist/components/*.d.ts",
       "development": "./src/components/*.tsx",
       "import": "./dist/components/*.js"
-    }
+    },
+    "./styles.css": "./styles.css",
+    "./base.css": "./base.css",
+    "./playground.css": "./playground.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "styles.css",
+    "base.css",
+    "playground.css"
   ],
   "scripts": {
     "build": "tsc",

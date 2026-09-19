@@ -24,8 +24,8 @@ export function BrandSelect() {
 
   return (
     <Select value={brand} onValueChange={(value) => setBrand(value as Brand)}>
-      <SelectTrigger className="w-[160px]" aria-label="Select niche">
-        <SelectValue placeholder="Select niche" />
+      <SelectTrigger className="w-[160px]" aria-label="Demo playground theme (real apps ship one theme file)">
+        <SelectValue placeholder="Playground theme" />
       </SelectTrigger>
       <SelectContent>
         {brands.map((id) => (

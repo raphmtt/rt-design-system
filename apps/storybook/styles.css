@@ -1,4 +1,6 @@
-@import "@rtds/tw-preset/styles.css";
+@import "@rtds/ui/playground.css";
+
+/* Storybook uses DS package presets. The demo app owns apps/demo/themes and generates CSS locally. */
 
 /* styles.css lives in apps/storybook/ (not src/) — two levels up to the repo root */
 @source "../../packages/ui/src/**/*.{ts,tsx}";

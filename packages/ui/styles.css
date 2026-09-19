@@ -1,0 +1,4 @@
+/* Optional DS-shipped Atlas preset + UI base. Product apps may import this as-is,
+   or generate their own theme CSS and import @rtds/ui/base.css instead. */
+@import "@rtds/tokens/atlas.css";
+@import "./base.css";

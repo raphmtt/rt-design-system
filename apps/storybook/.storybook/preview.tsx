@@ -45,7 +45,7 @@ const preview: Preview = {
         maison: 'maison',
       },
       defaultTheme: 'atlas',
-      attributeName: 'data-brand',
+      attributeName: 'data-theme',
     }),
     withThemeByClassName({
       themes: {

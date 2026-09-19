@@ -8,31 +8,36 @@ This document describes how to keep the Figma design kit in sync with the code.
 
 | Concern | Source of Truth |
 |---------|-----------------|
-| Token values | `design/tokens/**/*.json` (Git) |
+| Token values | `packages/tokens/themes/*.theme.rtds.json` (OKLCH). Design tools may speak hex; convert at ingest. |
+| Non-color primitives | `design/tokens/primitive.json` |
 | Component API | Code (`@rtds/ui`) |
-| Visual design | Figma (mirrors code) |
+| Visual design | Figma / Penpot (mirrors code) |
 
 ---
 
-## Tokens Studio Integration
+## Hex handoff → OKLCH ingest
 
-### Setup
+Design (Figma, Penpot, Tokens Studio) may still speak **hex**. Repo source of truth after ingest is **OKLCH** in `packages/tokens/themes/*.theme.rtds.json`. Do not check in parallel hex fields in the theme file.
 
-1. Install Tokens Studio plugin in Figma
-2. Connect to this repository via GitHub sync
-3. Set sync folder to `design/tokens`
-4. Pull tokens to Figma
+1. Drop or update hex palettes (legacy `design/tokens/themes/*-{light,dark}.json` or the frozen snapshot in `packages/tokens/scripts/migrate-hex-to-oklch.js`)
+2. Run `pnpm --filter @rtds/tokens migrate:hex`
+3. Run `pnpm tokens:build` and commit generated CSS
+
+See [THEMING.md](./THEMING.md) and [design/penpot/README.md](../design/penpot/README.md).
+
+## Tokens Studio / Figma
+
+Non-color primitives (spacing, type) can still sync from `design/tokens`. **Colors are not Tokens Studio hex** — they live in the OKLCH theme files.
 
 ### Workflow: Tokens → Code
 
 ```
-Figma (Tokens Studio)
-    ↕ Git sync
-design/tokens/**/*.json     ← SOURCE OF TRUTH for token values
-    → Style Dictionary build
-packages/tokens/dist/css/variables.css
-    → imported by @rtds/tw-preset
-    → consumed by @rtds/ui + apps/demo
+Design hex (optional handoff)
+    → packages/tokens/scripts/migrate-hex-to-oklch.js
+packages/tokens/themes/*.theme.rtds.json     ← SOURCE OF TRUTH for color
+    → pnpm tokens:build  (first-party generator, not Style Dictionary)
+packages/tokens/dist/{atlas,folio,maison}.css
+    → @rtds/ui/styles.css (optional DS Atlas preset) / apps generate their own CSS
 ```
 
 ### CI Check
@@ -180,9 +185,7 @@ These aspects require manual maintenance (not automated):
 
 ### Tokens not updating in Figma
 
-1. Check Tokens Studio sync status
-2. Verify `design/tokens` folder path
-3. Try "Pull from GitHub" in plugin
+Colors are not synced as hex from Tokens Studio. Edit `packages/tokens/themes/*.theme.rtds.json` (OKLCH) or re-run hex ingest. Non-color primitives still live in `design/tokens`.
 
 ### Component looks different
 
@@ -192,7 +195,6 @@ These aspects require manual maintenance (not automated):
 
 ### New token not available
 
-1. Add to `design/tokens/*.json`
+1. Add to `packages/tokens/themes/*.theme.rtds.json` (OKLCH)
 2. Run `pnpm tokens:build`
 3. Commit generated CSS
-4. Push and sync Tokens Studio

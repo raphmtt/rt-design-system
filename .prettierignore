@@ -5,3 +5,5 @@ dist
 pnpm-lock.yaml
 coverage
 storybook-static
+**/*.theme.rtds.json
+**/src/generated

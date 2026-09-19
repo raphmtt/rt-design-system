@@ -15,11 +15,13 @@ The previous “Clear Signal” look (`aurora` / `editorial`, Plus Jakarta Sans,
 5. **Identical structure light/dark** — Only tokens change
 6. **Agent-safe** — Everything expressible in tokens + documented variants
 
-See [HOW-TO-THEME.md](./HOW-TO-THEME.md) for how to change colors, fonts, and icons.
+See [THEMING.md](./THEMING.md) for how to author OKLCH colors and [HOW-TO-THEME.md](./HOW-TO-THEME.md) for fonts and icons.
 
 ---
 
 ## Token Architecture
+
+Color source of truth is **OKLCH** in `packages/tokens/themes/*.theme.rtds.json` (not hex). See [THEMING.md](./THEMING.md).
 
 ### Three Layers
 
@@ -29,19 +31,19 @@ Primitive  →  Semantic  →  Component
 ```
 
 1. **Primitive** — Spacing, type families/sizes, radius scale. **Never use color primitives in components.**
-2. **Semantic** — Role-based hex tokens (`--background`, `--primary`, `--muted`). Components consume these.
-3. **Component** — Radius, font roles, section spacing per theme.
+2. **Semantic** — Role-based OKLCH tokens (`--background`, `--primary`, `--muted`) emitted as `oklch()`. Components consume these.
+3. **Component** — Radius per theme JSON; font roles and section spacing shared across themes.
 
 ### Theming Axes
 
-| Axis | Attribute | Values |
-|------|-----------|--------|
-| Niche | `data-brand` on `<html>` | `atlas`, `folio`, `maison` |
-| Mode | `.dark` class on `<html>` | light (default), dark |
+| Axis | Product apps | Demo playground |
+|------|----------------|-----------------|
+| Theme | One generated CSS file (`:root` + `.dark`) | `apps/demo/themes` generated locally; switcher is playground-only |
+| Mode | `.dark` class on `<html>` | same |
 
-Changing niche or mode **only** remaps CSS variables — **no component rewrites**.
+Changing theme or mode **only** remaps CSS variables — **no component rewrites**.
 
-Default niche is **atlas**. Tailwind maps colors with `var(--…)` (no `hsl()` wrapper).
+Default product theme is **atlas**. Tailwind maps colors with `var(--…)` (no `hsl()` wrapper). Gradients should use `linear-gradient(in oklch, …)`.
 
 ---
 
@@ -126,7 +128,7 @@ Derive sm/md/lg/xl as: `calc(var(--radius) ± n px)`
 
 ## Color Direction
 
-Semantic hex lives in `design/tokens/themes/*-{light,dark}.json`. Rebuild with `pnpm tokens:build`.
+Semantic OKLCH lives in `packages/tokens/themes/*.theme.rtds.json`. Rebuild with `pnpm tokens:build`. Design tools may still speak hex; convert at ingest — JSON SoT after that is OKLCH.
 
 | Niche | Character |
 |-------|-----------|
@@ -155,7 +157,7 @@ Lucide only, via `<Icon>` (`strokeWidth` 1.5, `currentColor`, outline). Size **2
 - ✓ Use semantic tokens (`bg-background`, `text-foreground`)
 - ✓ Use `<Icon icon={…} />` for Lucide
 - ✓ Use component variants from props
-- ✓ Test all three niches × both modes
+- ✓ Test the product theme in both modes (and playground niches when changing tokens)
 - ✓ Use `cn()` for class merging
 - ✓ Keep hit targets ≥ 44×44px
 - ✓ Add focus-visible styles

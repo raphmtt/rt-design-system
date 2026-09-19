@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Demo playground helper: swaps which generated theme CSS is active via
+ * `data-theme` on `<html>`. Product apps import one theme CSS file and do
+ * not need this provider.
+ */
+
 import * as React from 'react';
 import { type Brand, brands, migrateBrand } from '@rtds/tokens';
 
@@ -35,7 +41,8 @@ export function BrandProvider({
   }, [storageKey]);
 
   React.useEffect(() => {
-    document.documentElement.setAttribute('data-brand', brand);
+    // Demo playground only — product apps import one theme CSS and skip this.
+    document.documentElement.setAttribute('data-theme', brand);
   }, [brand]);
 
   const setBrand = React.useCallback(

@@ -16,7 +16,7 @@ function Introduction() {
           Features
         </h2>
         <ul className="mt-4 space-y-2 text-foreground">
-          <li>✓ Multi-niche theming (atlas, folio, maison)</li>
+          <li>✓ OKLCH theme tokens (atlas, folio, maison playground)</li>
           <li>✓ Dark mode on all components</li>
           <li>✓ Responsive design (375, 768, 1440)</li>
           <li>✓ WCAG 2.2 AA accessibility</li>
@@ -34,6 +34,9 @@ function Introduction() {
 {`# Install packages
 pnpm add @rtds/ui @rtds/tokens @rtds/tw-preset
 
+# CSS: @import "./generated/themes/atlas.css";
+#      @import "@rtds/ui/base.css";
+
 # Or scaffold a new project
 pnpm create @rtds landing my-site`}
           </code>
@@ -45,8 +48,9 @@ pnpm create @rtds landing my-site`}
           Theme Controls
         </h2>
         <p className="mt-2 text-muted-foreground">
-          Use the toolbar above to switch between niches (atlas / folio / maison) and
-          modes (light/dark). All components support these theme variations.
+          Use the toolbar to preview DS package presets (atlas / folio / maison) and
+          light/dark. The demo app is different: it owns `apps/demo/themes` and runs the
+          generator itself. Product apps ship one generated theme CSS file plus `.dark`.
         </p>
       </section>
     </div>

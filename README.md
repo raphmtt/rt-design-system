@@ -4,7 +4,7 @@ A versioned, installable landing/sites design system built with React, Tailwind 
 
 ## Features
 
-- 🎨 **Multi-niche theming** — Switch between `atlas`, `folio`, and `maison`
+- 🎨 **Theming** — One OKLCH theme JSON → generated `oklch()` CSS; light + dark via `.dark`
 - 🌙 **Dark mode** — Mandatory on all components
 - 📱 **Responsive** — Mobile-first, tested at 375px and 1440px
 - ♿ **Accessible** — WCAG 2.2 AA compliant
@@ -31,16 +31,17 @@ pnpm add @rtds/ui @rtds/tokens @rtds/tw-preset
 Import styles in your CSS:
 
 ```css
-@import "@rtds/tw-preset/styles.css";
+@import "./generated/themes/atlas.css";
+@import "@rtds/ui/base.css";
 ```
 
 ## Packages
 
 | Package | Description |
 |---------|-------------|
-| `@rtds/tokens` | Design tokens (CSS variables + JS types) |
-| `@rtds/tw-preset` | Tailwind CSS preset and styles |
-| `@rtds/ui` | React components |
+| `@rtds/tokens` | OKLCH theme JSON + generated CSS + JS helpers |
+| `@rtds/tw-preset` | Tailwind CSS v4 `@theme` bridge and base styles |
+| `@rtds/ui` | React components (`base.css` + your generated theme CSS) |
 | `@rtds/eslint-config` | ESLint configuration |
 | `@rtds/create` | CLI scaffolding tool |
 
@@ -71,26 +72,31 @@ pnpm typecheck
 
 ## Theming
 
-### Niches
+Product apps use **one theme** and toggle `.dark` on `<html>`:
 
-Set `data-brand` on `<html>`:
-
-```html
-<html data-brand="atlas">  <!-- or "folio" | "maison" -->
+```css
+@import "./generated/themes/atlas.css"; /* app-owned, after rtds-tokens --in/--out */
+@import "@rtds/ui/base.css";
 ```
 
-### Modes
+Or the DS-shipped Atlas preset:
 
-Toggle `.dark` class on `<html>`:
+```css
+@import "./generated/themes/atlas.css";
+@import "@rtds/ui/base.css";
+```
 
 ```html
 <html class="dark">
 ```
 
+See [docs/THEMING.md](./docs/THEMING.md). The demo (`apps/demo/themes`) is the reference for app-owned JSON + generator.
+
 ## Documentation
 
+- [THEMING.md](./docs/THEMING.md) — OKLCH theme JSON, generator, app integration
 - [HUMAN-QUICKSTART.md](./docs/HUMAN-QUICKSTART.md) — Build a landing page in 15 minutes
-- [HOW-TO-THEME.md](./docs/HOW-TO-THEME.md) — Change colors, fonts, and icons
+- [HOW-TO-THEME.md](./docs/HOW-TO-THEME.md) — Fonts, icons, and radius
 - [DESIGN.md](./docs/DESIGN.md) — Visual principles and token rules
 - [PERF-A11Y-CHECKLIST.md](./docs/PERF-A11Y-CHECKLIST.md) — Pre-ship checklist
 - [FIGMA-CODE-SYNC.md](./docs/FIGMA-CODE-SYNC.md) — Figma ↔ code sync guide
