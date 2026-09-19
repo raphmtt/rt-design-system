@@ -7,7 +7,7 @@ import {
   CardContent,
   CardFooter,
   Button,
-} from '@acme/ui';
+} from '@rtds/ui';
 
 const meta: Meta<typeof Card> = {
   title: 'Foundations/Card',

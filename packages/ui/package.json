@@ -1,7 +1,7 @@
 {
-  "name": "@acme/ui",
+  "name": "@rtds/ui",
   "version": "0.1.0",
-  "description": "React UI components for the Acme design system",
+  "description": "React UI components for the RTDS design system",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -28,8 +28,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@acme/tokens": "workspace:*",
-    "@acme/tw-preset": "workspace:*",
+    "@rtds/tokens": "workspace:*",
+    "@rtds/tw-preset": "workspace:*",
     "@base-ui/react": "^1.8.0",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-alert-dialog": "^1.1.5",

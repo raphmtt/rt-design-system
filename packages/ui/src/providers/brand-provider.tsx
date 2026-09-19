@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { type Brand, brands, migrateBrand } from '@acme/tokens';
+import { type Brand, brands, migrateBrand } from '@rtds/tokens';
 
 interface BrandContextValue {
   brand: Brand;

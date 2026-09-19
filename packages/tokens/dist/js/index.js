@@ -1,4 +1,4 @@
-// Acme Design System - Generated Token Types
+// RTDS Design System - Generated Token Types
 export const brands = ['atlas', 'folio', 'maison'];
 export const modes = ['light', 'dark'];
 export const brandLabels = {

@@ -1,5 +1,5 @@
-/* Acme Design System - Tailwind CSS Entry */
-@import "@acme/tokens/css/variables.css";
+/* RTDS Design System - Tailwind CSS Entry */
+@import "@rtds/tokens/css/variables.css";
 
 /* Tailwind v4 imports */
 @import "tailwindcss";

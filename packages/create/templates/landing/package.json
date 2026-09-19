@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@acme/tokens": "^0.1.0",
-    "@acme/tw-preset": "^0.1.0",
-    "@acme/ui": "^0.1.0",
+    "@rtds/tokens": "^0.1.0",
+    "@rtds/tw-preset": "^0.1.0",
+    "@rtds/ui": "^0.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

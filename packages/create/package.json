@@ -1,10 +1,10 @@
 {
-  "name": "@acme/create",
+  "name": "@rtds/create",
   "version": "0.1.0",
-  "description": "CLI to scaffold new Acme design system projects",
+  "description": "CLI to scaffold new RTDS design system projects",
   "type": "module",
   "bin": {
-    "create-acme": "./dist/index.js"
+    "create-rtds": "./dist/index.js"
   },
   "main": "./dist/index.js",
   "files": [

@@ -4,7 +4,7 @@ function Introduction() {
   return (
     <div className="p-8 max-w-4xl">
       <h1 className="font-heading text-4xl font-bold text-foreground">
-        Acme Design System
+        RTDS Design System
       </h1>
       <p className="mt-4 text-lg text-muted-foreground">
         A versioned, installable landing/sites design system built with React,
@@ -32,10 +32,10 @@ function Introduction() {
         <pre className="mt-4 p-4 bg-muted rounded-lg overflow-x-auto">
           <code className="text-sm text-foreground">
 {`# Install packages
-pnpm add @acme/ui @acme/tokens @acme/tw-preset
+pnpm add @rtds/ui @rtds/tokens @rtds/tw-preset
 
 # Or scaffold a new project
-pnpm create @acme landing my-site`}
+pnpm create @rtds landing my-site`}
           </code>
         </pre>
       </section>

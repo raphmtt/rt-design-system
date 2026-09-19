@@ -4,8 +4,8 @@ import { program } from 'commander';
 import { create } from './create.js';
 
 program
-  .name('create-acme')
-  .description('Scaffold a new Acme design system project')
+  .name('create-rtds')
+  .description('Scaffold a new RTDS design system project')
   .version('0.1.0');
 
 program

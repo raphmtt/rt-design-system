@@ -20,8 +20,8 @@ import {
   ICON_SIZE_FEATURE,
   useBrand,
   useTheme,
-} from '@acme/ui';
-import { brandLabels } from '@acme/tokens';
+} from '@rtds/ui';
+import { brandLabels } from '@rtds/tokens';
 import {
   Zap,
   Shield,
@@ -35,7 +35,7 @@ import {
 
 const Logo = () => (
   <a href="/" className="font-heading font-bold text-xl text-foreground">
-    Acme
+    RTDS
   </a>
 );
 
@@ -218,7 +218,7 @@ function Landing() {
 
         <CTASection
           title="Ready to build?"
-          description="Get started with the Acme design system and ship beautiful landing pages faster."
+          description="Get started with the RTDS design system and ship beautiful landing pages faster."
           tone="muted"
           actions={
             <>
@@ -247,7 +247,7 @@ function Landing() {
             icon: <Icon icon={Twitter} />,
           },
         ]}
-        copyright="© 2026 Acme Inc. All rights reserved."
+        copyright="© 2026 RTDS. All rights reserved."
         legalLinks={[
           { label: 'Privacy', href: '#' },
           { label: 'Terms', href: '#' },

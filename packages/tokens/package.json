@@ -1,7 +1,7 @@
 {
-  "name": "@acme/tokens",
+  "name": "@rtds/tokens",
   "version": "0.1.0",
-  "description": "Design tokens for the Acme design system",
+  "description": "Design tokens for the RTDS design system",
   "type": "module",
   "main": "./dist/js/index.js",
   "types": "./dist/js/index.d.ts",

@@ -1,7 +1,7 @@
 {
-  "name": "@acme/tw-preset",
+  "name": "@rtds/tw-preset",
   "version": "0.1.0",
-  "description": "Tailwind CSS preset and styles for the Acme design system",
+  "description": "Tailwind CSS preset and styles for the RTDS design system",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,7 +24,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@acme/tokens": "workspace:*"
+    "@rtds/tokens": "workspace:*"
   },
   "devDependencies": {
     "tailwindcss": "^4.1.6",

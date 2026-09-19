@@ -93,7 +93,7 @@ Use the `<Icon>` wrapper — do not set `strokeWidth` or mix icon packs.
 | Features / marketing | `24` | `<Icon icon={Zap} size={ICON_SIZE_FEATURE} />` |
 
 ```tsx
-import { Icon, ICON_SIZE_FEATURE } from '@acme/ui';
+import { Icon, ICON_SIZE_FEATURE } from '@rtds/ui';
 import { Zap } from 'lucide-react';
 
 <Icon icon={Zap} size={ICON_SIZE_FEATURE} />
@@ -107,8 +107,8 @@ Stroke is `1.5`. Compact controls (checkbox, select chevron) may pass a smaller 
 
 ```
 design/tokens/*.json  →  pnpm tokens:build  →  packages/tokens/dist/css/variables.css
-                                              →  @acme/tw-preset @theme var(--…)
-                                              →  @acme/ui + demo + Storybook
+                                              →  @rtds/tw-preset @theme var(--…)
+                                              →  @rtds/ui + demo + Storybook
 ```
 
 `pnpm tokens:check` fails if dist is out of date. Always commit `packages/tokens/dist`.

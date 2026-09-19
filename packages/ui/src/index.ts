@@ -1,4 +1,4 @@
-// Acme UI Component Library
+// RTDS UI Component Library
 
 // Utils
 export { cn } from './lib/utils';

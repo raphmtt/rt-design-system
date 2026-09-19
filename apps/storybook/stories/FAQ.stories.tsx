@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FAQ } from '@acme/ui';
+import { FAQ } from '@rtds/ui';
 
 const meta: Meta<typeof FAQ> = {
   title: 'Marketing/FAQ',

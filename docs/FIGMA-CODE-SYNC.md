@@ -9,7 +9,7 @@ This document describes how to keep the Figma design kit in sync with the code.
 | Concern | Source of Truth |
 |---------|-----------------|
 | Token values | `design/tokens/**/*.json` (Git) |
-| Component API | Code (`@acme/ui`) |
+| Component API | Code (`@rtds/ui`) |
 | Visual design | Figma (mirrors code) |
 
 ---
@@ -31,8 +31,8 @@ Figma (Tokens Studio)
 design/tokens/**/*.json     ← SOURCE OF TRUTH for token values
     → Style Dictionary build
 packages/tokens/dist/css/variables.css
-    → imported by @acme/tw-preset
-    → consumed by @acme/ui + apps/demo
+    → imported by @rtds/tw-preset
+    → consumed by @rtds/ui + apps/demo
 ```
 
 ### CI Check

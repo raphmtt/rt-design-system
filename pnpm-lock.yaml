@@ -20,13 +20,13 @@ importers:
 
   apps/demo:
     dependencies:
-      '@acme/tokens':
+      '@rtds/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@acme/tw-preset':
+      '@rtds/tw-preset':
         specifier: workspace:*
         version: link:../../packages/tw-preset
-      '@acme/ui':
+      '@rtds/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       lucide-react:
@@ -42,7 +42,7 @@ importers:
         specifier: ^7.5.0
         version: 7.18.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
     devDependencies:
-      '@acme/eslint-config':
+      '@rtds/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
       '@tailwindcss/vite':
@@ -72,13 +72,13 @@ importers:
 
   apps/storybook:
     dependencies:
-      '@acme/tokens':
+      '@rtds/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@acme/tw-preset':
+      '@rtds/tw-preset':
         specifier: workspace:*
         version: link:../../packages/tw-preset
-      '@acme/ui':
+      '@rtds/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       lucide-react:
@@ -91,7 +91,7 @@ importers:
         specifier: ^19.1.0
         version: 19.3.0(react@19.3.0)
     devDependencies:
-      '@acme/eslint-config':
+      '@rtds/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
       '@storybook/addon-a11y':
@@ -194,7 +194,7 @@ importers:
 
   packages/tw-preset:
     dependencies:
-      '@acme/tokens':
+      '@rtds/tokens':
         specifier: workspace:*
         version: link:../tokens
     devDependencies:
@@ -207,12 +207,6 @@ importers:
 
   packages/ui:
     dependencies:
-      '@acme/tokens':
-        specifier: workspace:*
-        version: link:../tokens
-      '@acme/tw-preset':
-        specifier: workspace:*
-        version: link:../tw-preset
       '@base-ui/react':
         specifier: ^1.8.0
         version: 1.8.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -252,6 +246,12 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.1.7
         version: 1.2.16(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@rtds/tokens':
+        specifier: workspace:*
+        version: link:../tokens
+      '@rtds/tw-preset':
+        specifier: workspace:*
+        version: link:../tw-preset
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1

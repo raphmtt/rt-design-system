@@ -11,16 +11,16 @@
     "lint": "eslint src --ext .ts,.tsx"
   },
   "dependencies": {
-    "@acme/tokens": "workspace:*",
-    "@acme/tw-preset": "workspace:*",
-    "@acme/ui": "workspace:*",
+    "@rtds/tokens": "workspace:*",
+    "@rtds/tw-preset": "workspace:*",
+    "@rtds/ui": "workspace:*",
     "lucide-react": "^0.480.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.5.0"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
+    "@rtds/eslint-config": "workspace:*",
     "@tailwindcss/vite": "^4.1.6",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",

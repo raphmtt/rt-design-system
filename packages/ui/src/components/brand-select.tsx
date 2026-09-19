@@ -1,8 +1,8 @@
 'use client';
 
 import { Compass, BookOpen, Home } from 'lucide-react';
-import type { Brand } from '@acme/tokens';
-import { brandLabels, brands } from '@acme/tokens';
+import type { Brand } from '@rtds/tokens';
+import { brandLabels, brands } from '@rtds/tokens';
 import { useBrand } from '../providers/brand-provider';
 import { Icon } from './icon';
 import {

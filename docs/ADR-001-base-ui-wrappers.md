@@ -2,7 +2,7 @@
 
 - **Status:** Accepted (FINAL)
 - **Date:** 2026-09-18
-- **Package:** `@acme/ui`
+- **Package:** `@rtds/ui`
 - **Primitive:** `@base-ui/react` (^1.8)
 
 This decision is **final**. Do not reopen Base UI vs shadcn vs a new kit.
@@ -11,7 +11,7 @@ This decision is **final**. Do not reopen Base UI vs shadcn vs a new kit.
 
 ## Context
 
-`@acme/ui` today mixes Radix primitives, Radix `Slot`, and CVA-styled components. That path looks like a shadcn clone: headless parts leak as public compound APIs (`DialogTrigger`, `AccordionContent`, …), and consumers assemble kits instead of using a designed surface.
+`@rtds/ui` today mixes Radix primitives, Radix `Slot`, and CVA-styled components. That path looks like a shadcn clone: headless parts leak as public compound APIs (`DialogTrigger`, `AccordionContent`, …), and consumers assemble kits instead of using a designed surface.
 
 We need a locked architecture that:
 
@@ -26,22 +26,22 @@ Base UI (`@base-ui/react`) is unstyled and already used as the headless layer. T
 
 ## Decision
 
-**The `@acme/ui` component library is 1:1 wrappers over Base UI.**
+**The `@rtds/ui` component library is 1:1 wrappers over Base UI.**
 
 | Rule | Meaning |
 | --- | --- |
-| 1:1 | One Base UI component → exactly one public export from `@acme/ui`. |
+| 1:1 | One Base UI component → exactly one public export from `@rtds/ui`. |
 | Parts only via props | Base UI compound parts (`Root`, `Trigger`, `Portal`, …) are swallowed inside our wrapper. Consumers do not import them. |
 | CSS/tokens on top | Base UI stays unstyled. Variants and visuals use existing semantic CSS variables and Tailwind token classes. No new hex. |
 | Native Base UI API | Prefer Base UI’s own composition (`render`, `nativeButton`) over Radix `Slot` / `asChild` when they conflict. |
 
-Do **not** re-export `Button.Root` or any other Base UI namespace from `@acme/ui`.
+Do **not** re-export `Button.Root` or any other Base UI namespace from `@rtds/ui`.
 
 ```txt
 Product app
-    │  import { Button } from '@acme/ui'
+    │  import { Button } from '@rtds/ui'
     ▼
-@acme/ui Button          ← single public export
+@rtds/ui Button          ← single public export
     │  className from CVA + tokens (--primary, --ring, …)
     ▼
 @base-ui/react/button    ← headless behavior / a11y
@@ -106,7 +106,7 @@ Internal DS call sites that used `asChild` for CTAs (`SiteHeader`, `PricingTier`
 **Constraints**
 
 - No shadcn kit clone, no new component kit, no visual redesign.
-- No BarberPoint / product-app imports in `@acme/ui`.
+- No BarberPoint / product-app imports in `@rtds/ui`.
 - Do not publish this PoC as a new npm major beyond normal package versioning.
 
 ---
@@ -124,7 +124,7 @@ Internal DS call sites that used `asChild` for CTAs (`SiteHeader`, `PricingTier`
 
 ## Rollout (later)
 
-1. For each remaining primitive: wrap the Base UI component (or compound tree) behind **one** `@acme/ui` export.
+1. For each remaining primitive: wrap the Base UI component (or compound tree) behind **one** `@rtds/ui` export.
 2. Swallow parts; expose behavior through props / slots we own.
 3. Keep CVA + semantic tokens for visuals.
 4. Update Storybook + demo per component. Do not couple wrappers to a product app.

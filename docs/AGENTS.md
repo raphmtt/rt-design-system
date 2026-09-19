@@ -40,9 +40,9 @@ Fix all errors before committing.
 - ✓ Wrap Base UI 1:1 — one public export per primitive; swallow compound parts ([ADR-001](./ADR-001-base-ui-wrappers.md))
 - ✓ Use component variants from props (`variant="outline"`, `size="lg"`)
 - ✓ Use `cn()` utility for class merging
-- ✗ Don't re-export Base UI `Root` / `Trigger` / namespaces from `@acme/ui`
+- ✗ Don't re-export Base UI `Root` / `Trigger` / namespaces from `@rtds/ui`
 - ✗ Don't override component internal styles in consumer code
-- ✗ Don't modify components in `apps/demo` — only use exports from `@acme/ui`
+- ✗ Don't modify components in `apps/demo` — only use exports from `@rtds/ui`
 
 ### Dark Mode
 
@@ -127,7 +127,7 @@ export * from './components/my-component';
 ```tsx
 // apps/storybook/stories/MyComponent.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import { MyComponent } from '@acme/ui';
+import { MyComponent } from '@rtds/ui';
 
 const meta: Meta<typeof MyComponent> = {
   title: 'Components/MyComponent',
@@ -224,6 +224,6 @@ Use semantic tokens instead:
 
 ### Styles not applying
 
-1. Verify `@acme/tw-preset/styles.css` is imported
+1. Verify `@rtds/tw-preset/styles.css` is imported
 2. Check class names use semantic tokens
 3. Run `pnpm tokens:build` to regenerate CSS

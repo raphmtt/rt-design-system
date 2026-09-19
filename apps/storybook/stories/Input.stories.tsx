@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Input, Label, FormField } from '@acme/ui';
+import { Input, Label, FormField } from '@rtds/ui';
 
 const meta: Meta<typeof Input> = {
   title: 'Foundations/Input',
