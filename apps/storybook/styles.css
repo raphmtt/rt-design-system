@@ -1,4 +1,4 @@
-@import "@rtds/tw-preset/styles.css";
+@import "@rtds/ui/playground.css";
 
 /* styles.css lives in apps/storybook/ (not src/) — two levels up to the repo root */
 @source "../../packages/ui/src/**/*.{ts,tsx}";

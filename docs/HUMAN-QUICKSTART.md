@@ -54,23 +54,21 @@ pnpm add @rtds/ui @rtds/tokens @rtds/tw-preset
 In your main CSS file:
 
 ```css
-@import "@rtds/tw-preset/styles.css";
+@import "@rtds/ui/styles.css";
 ```
 
 ### 3. Add Providers
 
-Wrap your app with theme providers:
+Wrap your app with a light/dark provider:
 
 ```tsx
-import { ThemeProvider, BrandProvider } from '@rtds/ui';
+import { ThemeProvider } from '@rtds/ui';
 
 function App() {
   return (
-    <BrandProvider defaultBrand="atlas">
-      <ThemeProvider defaultMode="system">
-        {/* Your app */}
-      </ThemeProvider>
-    </BrandProvider>
+    <ThemeProvider defaultMode="system">
+      {/* Your app */}
+    </ThemeProvider>
   );
 }
 ```
@@ -175,21 +173,7 @@ import { CTASection, Button } from '@rtds/ui';
 
 ## Theming
 
-### Change Brand
-
-Set `data-brand` on `<html>`:
-
-```html
-<html data-brand="folio">
-```
-
-Or use the BrandProvider:
-
-```tsx
-<BrandProvider defaultBrand="folio">
-```
-
-Niches: `atlas` (default), `folio`, `maison`. Stored `aurora` / `editorial` ids migrate to `atlas`.
+Product apps: import `@rtds/ui/styles.css` and toggle `.dark` on `<html>`. See [THEMING.md](./THEMING.md).
 
 ### Change Mode
 
@@ -205,14 +189,14 @@ Or use the ThemeProvider:
 <ThemeProvider defaultMode="dark">
 ```
 
+`BrandProvider` / `BrandSelect` are **demo playground only** (swap atlas / folio / maison JSON files). Do not use them in product apps.
+
 ### Add Theme Controls
 
 ```tsx
-import { ModeToggle, BrandSelect } from '@rtds/ui';
+import { ModeToggle } from '@rtds/ui';
 
-// In your header or settings
 <ModeToggle />
-<BrandSelect />
 ```
 
 ---
@@ -223,8 +207,8 @@ Override CSS variables in your CSS:
 
 ```css
 :root {
-  --primary: #1e3a5f; /* Custom primary color */
-  --radius: 1rem; /* Rounder corners */
+  --primary: oklch(0.37 0.04 250);
+  --radius: 1rem;
 }
 ```
 

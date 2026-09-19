@@ -6,7 +6,7 @@ Instructions for AI agents working with this design system.
 
 ## Before Making Changes
 
-1. Read `docs/DESIGN.md` for visual principles and token rules
+1. Read `docs/DESIGN.md` and `docs/THEMING.md`
 2. Check component inventory in the technical design
 3. Review existing Storybook stories for patterns
 
@@ -170,7 +170,8 @@ pnpm --filter storybook dev  # Check in Storybook
 | Components | `packages/ui/src/components/` |
 | Utils | `packages/ui/src/lib/` |
 | Providers | `packages/ui/src/providers/` |
-| Tokens (source) | `design/tokens/` |
+| Tokens (color SoT) | `packages/tokens/themes/*.theme.rtds.json` |
+| Tokens (primitives) | `design/tokens/primitive.json` |
 | Tokens (built) | `packages/tokens/dist/` |
 | Stories | `apps/storybook/stories/` |
 | Demo app | `apps/demo/src/` |
@@ -201,7 +202,7 @@ pnpm --filter storybook dev  # Check in Storybook
 ### Theme-Aware Styles
 
 ```tsx
-// These automatically switch between light/dark and niches:
+// These automatically switch between light/dark (and playground themes):
 <div className="bg-background text-foreground border-border" />
 ```
 
@@ -224,6 +225,6 @@ Use semantic tokens instead:
 
 ### Styles not applying
 
-1. Verify `@rtds/tw-preset/styles.css` is imported
+1. Verify `@rtds/ui/styles.css` is imported (playground: `@rtds/ui/playground.css`)
 2. Check class names use semantic tokens
 3. Run `pnpm tokens:build` to regenerate CSS

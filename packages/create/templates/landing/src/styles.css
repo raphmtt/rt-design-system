@@ -1,4 +1,4 @@
-@import "@rtds/tw-preset/styles.css";
+@import "@rtds/ui/styles.css";
 
 /* Scan node_modules/@rtds/ui source for Tailwind classes */
 @source "../../node_modules/@rtds/ui/dist/**/*.js";

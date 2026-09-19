@@ -1,13 +1,11 @@
-/* RTDS Design System - Tailwind CSS Entry */
-@import "@rtds/tokens/css/variables.css";
-
-/* Tailwind v4 imports */
+/* RTDS Design System - Tailwind CSS Entry
+   Import a generated theme CSS file *before* this file (see @rtds/ui/styles.css). */
 @import "tailwindcss";
 
 /* Always generate utilities used by @rtds/ui (Storybook, demo, apps). */
 @source "../ui/src/**/*.{ts,tsx}";
 
-/* Theme inline mappings for Tailwind v4 — hex CSS vars, no hsl() wrapper */
+/* Theme inline mappings for Tailwind v4 — oklch() CSS vars, no hsl() wrapper */
 @theme inline {
   --font-display: var(--font-display);
   --font-heading: var(--font-heading);

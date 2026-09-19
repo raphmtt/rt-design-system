@@ -82,7 +82,7 @@ const faqItems = [
   {
     question: 'How do I customize the theme?',
     answer:
-      'Set data-brand="atlas|folio|maison" on <html> and toggle the .dark class. Colors, radius, and type tokens remap — components stay the same. See docs/HOW-TO-THEME.md.',
+      'Edit one `*.theme.rtds.json` file (OKLCH colors), run `pnpm tokens:build`, and import `@rtds/ui/styles.css`. Toggle `.dark` on `<html>` for dark mode. See docs/THEMING.md.',
   },
   {
     question: 'Is the design system accessible?',
@@ -119,7 +119,7 @@ function Landing() {
         <Hero
           eyebrow={`${niche} · ${resolvedMode}`}
           title="Build beautiful landing pages faster"
-          description="Switch niche and color mode in the header — the whole page restyles from tokens. Atlas, Folio, and Maison × light/dark. Lucide icons, Instrument Serif display, Inter, JetBrains Mono."
+          description="Switch niche and color mode in the header — the whole page restyles from tokens. Atlas, Folio, and Maison × light/dark (demo playground). Lucide icons, Instrument Serif display, Inter, JetBrains Mono."
           align="center"
           actions={
             <>
@@ -174,7 +174,7 @@ function Landing() {
             <FeatureGridItem
               icon={<Icon icon={Palette} size={ICON_SIZE_FEATURE} />}
               title="Themeable"
-              description="Three niches via CSS variables. Change atlas, folio, or maison without touching components."
+              description="Three playground niches via CSS variables. Product apps ship one theme; the demo swaps atlas, folio, or maison without touching components."
             />
             <FeatureGridItem
               icon={<Icon icon={Globe} size={ICON_SIZE_FEATURE} />}

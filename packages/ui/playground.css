@@ -1,0 +1,3 @@
+/* Demo playground: all theme JSON files, switched with data-theme on <html>. */
+@import "@rtds/tokens/playground.css";
+@import "@rtds/tw-preset/styles.css";

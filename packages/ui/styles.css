@@ -1,0 +1,3 @@
+/* Product default: Atlas (light on :root, dark on .dark). */
+@import "@rtds/tokens/atlas.css";
+@import "@rtds/tw-preset/styles.css";

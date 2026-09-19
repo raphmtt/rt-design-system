@@ -47,7 +47,7 @@ Product app
 @base-ui/react/button    ← headless behavior / a11y
 ```
 
-Theming remains `data-brand` + `.dark` on `<html>`. Switching niche or mode remaps CSS variables; wrappers do not branch on brand.
+Theming remains one generated theme CSS file + `.dark` on `<html>`. Switching mode remaps CSS variables; wrappers do not branch on brand. Runtime multi-brand switching is demo-only.
 
 ---
 

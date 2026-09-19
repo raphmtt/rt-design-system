@@ -1,24 +1,21 @@
 # Figma Kit
 
-This folder contains links and documentation for the Figma design kit.
+This folder documents the Figma design kit. **Color SoT in git is OKLCH**, not Tokens Studio hex.
 
-## Tokens Studio Integration
+## Color tokens
 
-The `design/tokens` folder is the source of truth for design tokens. It is synced with Figma via Tokens Studio.
+Author and commit `packages/tokens/themes/*.theme.rtds.json`. If Figma still exports hex, convert at ingest:
 
-### Setup
+```bash
+pnpm --filter @rtds/tokens migrate:hex
+pnpm tokens:build
+```
 
-1. Install Tokens Studio plugin in Figma
-2. Connect to this repository
-3. Set sync folder to `design/tokens`
-4. Pull tokens to Figma
+See `docs/THEMING.md` and `design/penpot/README.md`.
 
-### Workflow
+## Non-color primitives
 
-1. Designer updates tokens in Figma via Tokens Studio
-2. Tokens Studio pushes JSON to `design/tokens`
-3. CI runs `pnpm tokens:build` to generate CSS
-4. Generated CSS is committed to `packages/tokens/dist`
+Spacing and type families in `design/tokens/primitive.json` can still sync via Tokens Studio if you use it for those layers only.
 
 ## Component Naming Parity
 

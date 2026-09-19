@@ -1,36 +1,54 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+/**
+ * First-party theme generator.
+ * Discovers packages/tokens/themes/*.theme.rtds.json and emits CSS.
+ * No third-party theming frameworks.
+ */
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { assertOklch, formatOklchCss, roundOklch } from './oklch.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(__dirname, '..', '..', '..');
-const tokensDir = path.resolve(rootDir, 'design', 'tokens');
-const outputDir = path.resolve(__dirname, '..', 'dist');
+const packageDir = path.resolve(__dirname, '..');
+const rootDir = path.resolve(packageDir, '..', '..');
+const themesDir = path.join(packageDir, 'themes');
+const outputDir = path.join(packageDir, 'dist');
+const primitivesPath = path.join(rootDir, 'design', 'tokens', 'primitive.json');
 
-fs.mkdirSync(path.join(outputDir, 'css'), { recursive: true });
-fs.mkdirSync(path.join(outputDir, 'js'), { recursive: true });
+const DEFAULT_THEME = 'atlas';
+const THEME_FILE_SUFFIX = '.theme.rtds.json';
 
-const primitiveTokens = JSON.parse(
-  fs.readFileSync(path.join(tokensDir, 'primitive.json'), 'utf-8')
-);
-
-const themes = [
-  'atlas-light',
-  'atlas-dark',
-  'folio-light',
-  'folio-dark',
-  'maison-light',
-  'maison-dark',
+const REQUIRED_COLOR_KEYS = [
+  'background',
+  'foreground',
+  'card',
+  'cardForeground',
+  'primary',
+  'primaryForeground',
+  'secondary',
+  'secondaryForeground',
+  'muted',
+  'mutedForeground',
+  'accent',
+  'accentForeground',
+  'destructive',
+  'destructiveForeground',
+  'border',
+  'input',
+  'ring',
+  'success',
+  'warning',
 ];
 
-const selectors = {
-  'atlas-light': ':root, [data-brand="atlas"]',
-  'atlas-dark': '.dark, [data-brand="atlas"].dark, .dark[data-brand="atlas"]',
-  'folio-light': '[data-brand="folio"]',
-  'folio-dark': '[data-brand="folio"].dark, .dark[data-brand="folio"]',
-  'maison-light': '[data-brand="maison"]',
-  'maison-dark': '[data-brand="maison"].dark, .dark[data-brand="maison"]',
-};
+function fail(message) {
+  console.error(`tokens build failed: ${message}`);
+  process.exit(1);
+}
+
+function camelToKebab(name) {
+  return name.replace(/[A-Z]/g, (ch) => `-${ch.toLowerCase()}`);
+}
 
 function flattenTokens(obj, prefix = '') {
   const result = {};
@@ -45,146 +63,197 @@ function flattenTokens(obj, prefix = '') {
   return result;
 }
 
-function resolveReferences(value, primitives) {
-  if (typeof value !== 'string') return value;
-  return value.replace(/\{([^}]+)\}/g, (_, ref) => {
-    const key = ref.replace(/\./g, '-');
-    return primitives[key] || value;
+function loadSharedVars() {
+  const fallback = {
+    'font-display': '"Instrument Serif"',
+    'font-heading': '"Inter"',
+    'font-body': '"Inter"',
+    'font-mono': '"JetBrains Mono"',
+    'space-section-y': '4rem',
+  };
+
+  if (!fs.existsSync(primitivesPath)) return fallback;
+
+  const primitives = flattenTokens(JSON.parse(fs.readFileSync(primitivesPath, 'utf8')));
+  return {
+    'font-display': `"${primitives['font-family-instrument'] ?? 'Instrument Serif'}"`,
+    'font-heading': `"${primitives['font-family-inter'] ?? 'Inter'}"`,
+    'font-body': `"${primitives['font-family-inter'] ?? 'Inter'}"`,
+    'font-mono': `"${primitives['font-family-jetbrains'] ?? 'JetBrains Mono'}"`,
+    'space-section-y': primitives['space-16'] ?? '4rem',
+  };
+}
+
+function discoverThemes() {
+  if (!fs.existsSync(themesDir)) {
+    fail(`no themes directory at ${themesDir}`);
+  }
+
+  const files = fs
+    .readdirSync(themesDir)
+    .filter((name) => name.endsWith(THEME_FILE_SUFFIX))
+    .sort();
+
+  if (files.length === 0) {
+    fail(`no ${THEME_FILE_SUFFIX} files in ${themesDir}`);
+  }
+
+  return files.map((fileName) => {
+    const filePath = path.join(themesDir, fileName);
+    const stem = fileName.slice(0, -THEME_FILE_SUFFIX.length);
+    let theme;
+    try {
+      theme = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    } catch (err) {
+      fail(`${fileName}: invalid JSON (${err.message})`);
+    }
+    return { fileName, filePath, stem, theme };
   });
 }
 
-function generateCSS() {
-  const primitives = flattenTokens(primitiveTokens);
-  let css = '/* RTDS Design System - Generated Tokens */\n\n';
-
-  for (const themeName of themes) {
-    const themeTokens = JSON.parse(
-      fs.readFileSync(path.join(tokensDir, 'themes', `${themeName}.json`), 'utf-8')
-    );
-
-    const selector = selectors[themeName];
-    const semantic = themeTokens.semantic || {};
-    const component = themeTokens.component || {};
-
-    css += `${selector} {\n`;
-
-    const tokenMap = {
-      background: semantic.background,
-      foreground: semantic.foreground,
-      card: semantic.card,
-      'card-foreground': semantic.cardForeground,
-      primary: semantic.primary,
-      'primary-foreground': semantic.primaryForeground,
-      secondary: semantic.secondary,
-      'secondary-foreground': semantic.secondaryForeground,
-      muted: semantic.muted,
-      'muted-foreground': semantic.mutedForeground,
-      accent: semantic.accent,
-      'accent-foreground': semantic.accentForeground,
-      destructive: semantic.destructive,
-      'destructive-foreground': semantic.destructiveForeground,
-      border: semantic.border,
-      input: semantic.input,
-      ring: semantic.ring,
-      success: semantic.success,
-      'success-foreground': semantic.successForeground,
-      warning: semantic.warning,
-      'warning-foreground': semantic.warningForeground,
-    };
-
-    for (const [name, token] of Object.entries(tokenMap)) {
-      if (token?.value) {
-        const resolved = resolveReferences(token.value, primitives);
-        css += `  --${name}: ${resolved};\n`;
-      }
-    }
-
-    if (component.radius?.value) {
-      css += `  --radius: ${component.radius.value};\n`;
-    }
-
-    const fontTokens = [
-      ['font-display', component.fontDisplay],
-      ['font-heading', component.fontHeading],
-      ['font-body', component.fontBody],
-      ['font-mono', component.fontMono],
-    ];
-
-    for (const [name, token] of fontTokens) {
-      if (token?.value) {
-        const resolved = resolveReferences(token.value, primitives);
-        css += `  --${name}: "${resolved}";\n`;
-      }
-    }
-
-    if (component.spaceSectionY?.value) {
-      const resolved = resolveReferences(component.spaceSectionY.value, primitives);
-      css += `  --space-section-y: ${resolved};\n`;
-    }
-
-    css += '}\n\n';
+function validateTheme({ fileName, stem, theme }) {
+  if (!theme || typeof theme !== 'object') {
+    fail(`${fileName}: root must be an object`);
+  }
+  if (theme.colorSpace !== 'oklch') {
+    fail(`${fileName}: colorSpace must be "oklch"`);
+  }
+  if (typeof theme.name !== 'string' || theme.name.length === 0) {
+    fail(`${fileName}: name is required`);
+  }
+  if (theme.name !== stem) {
+    fail(`${fileName}: name "${theme.name}" must match filename stem "${stem}"`);
+  }
+  if (typeof theme.radius !== 'string' || theme.radius.length === 0) {
+    fail(`${fileName}: radius is required (e.g. "0.5rem")`);
+  }
+  if (!theme.light || typeof theme.light !== 'object') {
+    fail(`${fileName}: light map is required`);
+  }
+  if (!theme.dark || typeof theme.dark !== 'object') {
+    fail(`${fileName}: dark map is required`);
   }
 
-  fs.writeFileSync(path.join(outputDir, 'css', 'variables.css'), css);
-  console.log('Generated: dist/css/variables.css');
+  const lightKeys = Object.keys(theme.light);
+  const darkKeys = Object.keys(theme.dark);
+  const lightSet = new Set(lightKeys);
+  const darkSet = new Set(darkKeys);
+
+  const missingInDark = lightKeys.filter((key) => !darkSet.has(key));
+  const missingInLight = darkKeys.filter((key) => !lightSet.has(key));
+  if (missingInDark.length || missingInLight.length) {
+    fail(
+      `${fileName}: light/dark key mismatch` +
+        (missingInDark.length ? `; in light only: ${missingInDark.join(', ')}` : '') +
+        (missingInLight.length ? `; in dark only: ${missingInLight.join(', ')}` : '')
+    );
+  }
+
+  for (const key of REQUIRED_COLOR_KEYS) {
+    if (!lightSet.has(key)) {
+      fail(`${fileName}: missing required color "${key}"`);
+    }
+  }
+
+  for (const mode of ['light', 'dark']) {
+    for (const [key, value] of Object.entries(theme[mode])) {
+      try {
+        assertOklch(value, `${fileName} ${mode}.${key}`);
+      } catch (err) {
+        fail(err.message);
+      }
+    }
+  }
 }
 
-function generateJS() {
-  const js = `// RTDS Design System - Generated Token Types
-export const brands = ['atlas', 'folio', 'maison'];
-export const modes = ['light', 'dark'];
-export const brandLabels = {
-  atlas: 'Atlas',
-  folio: 'Folio',
-  maison: 'Maison',
-};
-
-const LEGACY_BRANDS = { aurora: 'atlas', editorial: 'atlas' };
-
-export function isBrand(value) {
-  return value === 'atlas' || value === 'folio' || value === 'maison';
+function declarationsFor(colorMap, radius, sharedVars) {
+  const lines = [];
+  for (const [key, color] of Object.entries(colorMap)) {
+    const cssName = camelToKebab(key);
+    lines.push(`  --${cssName}: ${formatOklchCss(roundOklch(color))};`);
+  }
+  lines.push(`  --radius: ${radius};`);
+  for (const [name, value] of Object.entries(sharedVars)) {
+    lines.push(`  --${name}: ${value};`);
+  }
+  return lines.join('\n');
 }
 
-export function migrateBrand(value) {
-  if (isBrand(value)) return value;
-  if (value && value in LEGACY_BRANDS) return LEGACY_BRANDS[value];
-  return 'atlas';
+function emitProductCss(theme, sharedVars) {
+  const light = declarationsFor(theme.light, theme.radius, sharedVars);
+  const dark = declarationsFor(theme.dark, theme.radius, sharedVars);
+  return [
+    '/* generated — do not edit */',
+    ':root {',
+    light,
+    '}',
+    '.dark {',
+    dark,
+    '}',
+    '',
+  ].join('\n');
 }
 
-export const tokenNames = [
-  'background', 'foreground', 'card', 'card-foreground',
-  'primary', 'primary-foreground', 'secondary', 'secondary-foreground',
-  'muted', 'muted-foreground', 'accent', 'accent-foreground',
-  'destructive', 'destructive-foreground', 'border', 'input', 'ring',
-  'success', 'success-foreground', 'warning', 'warning-foreground',
-  'radius', 'font-display', 'font-heading', 'font-body', 'font-mono', 'space-section-y'
-];
-`;
+function emitPlaygroundCss(themes, sharedVars) {
+  const chunks = [
+    '/* generated — do not edit */',
+    '/* Demo playground only. Product apps import a single theme CSS file. */',
+    '',
+  ];
 
-  const dts = `export declare const brands: readonly ["atlas", "folio", "maison"];
-export declare const modes: readonly ["light", "dark"];
-export declare const brandLabels: Record<"atlas" | "folio" | "maison", string>;
-export type Brand = (typeof brands)[number];
-export type Mode = (typeof modes)[number];
-export declare function isBrand(value: string | null | undefined): value is Brand;
-export declare function migrateBrand(value: string | null | undefined): Brand;
-export declare const tokenNames: readonly [
-  "background", "foreground", "card", "card-foreground",
-  "primary", "primary-foreground", "secondary", "secondary-foreground",
-  "muted", "muted-foreground", "accent", "accent-foreground",
-  "destructive", "destructive-foreground", "border", "input", "ring",
-  "success", "success-foreground", "warning", "warning-foreground",
-  "radius", "font-display", "font-heading", "font-body", "font-mono", "space-section-y"
-];
-export type TokenName = (typeof tokenNames)[number];
-`;
+  for (const { theme } of themes) {
+    const light = declarationsFor(theme.light, theme.radius, sharedVars);
+    const dark = declarationsFor(theme.dark, theme.radius, sharedVars);
+    const isDefault = theme.name === DEFAULT_THEME;
 
-  fs.writeFileSync(path.join(outputDir, 'js', 'index.js'), js);
-  fs.writeFileSync(path.join(outputDir, 'js', 'index.d.ts'), dts);
-  console.log('Generated: dist/js/index.js');
+    const lightSelector = isDefault
+      ? `:root, [data-theme="${theme.name}"]`
+      : `[data-theme="${theme.name}"]`;
+    const darkSelector = isDefault
+      ? `.dark, [data-theme="${theme.name}"].dark, .dark[data-theme="${theme.name}"]`
+      : `[data-theme="${theme.name}"].dark, .dark[data-theme="${theme.name}"]`;
+
+    chunks.push(`${lightSelector} {`, light, '}', '');
+    chunks.push(`${darkSelector} {`, dark, '}', '');
+  }
+
+  return chunks.join('\n');
 }
 
-generateCSS();
-generateJS();
+function cleanGeneratedCss() {
+  fs.mkdirSync(outputDir, { recursive: true });
+  if (!fs.existsSync(outputDir)) return;
+  for (const name of fs.readdirSync(outputDir)) {
+    if (name.endsWith('.css')) {
+      fs.unlinkSync(path.join(outputDir, name));
+    }
+  }
+}
 
-console.log('Token build complete!');
+const entries = discoverThemes();
+for (const entry of entries) {
+  validateTheme(entry);
+}
+
+const sharedVars = loadSharedVars();
+cleanGeneratedCss();
+
+const defaultEntry = entries.find((entry) => entry.stem === DEFAULT_THEME) ?? entries[0];
+
+for (const entry of entries) {
+  const css = emitProductCss(entry.theme, sharedVars);
+  const outFile = path.join(outputDir, `${entry.stem}.css`);
+  fs.writeFileSync(outFile, css);
+  console.log(`Generated: dist/${entry.stem}.css`);
+}
+
+const playground = emitPlaygroundCss(entries, sharedVars);
+fs.writeFileSync(path.join(outputDir, 'playground.css'), playground);
+console.log('Generated: dist/playground.css');
+
+const defaultCss = fs.readFileSync(path.join(outputDir, `${defaultEntry.stem}.css`), 'utf8');
+fs.mkdirSync(path.join(outputDir, 'css'), { recursive: true });
+fs.writeFileSync(path.join(outputDir, 'css', 'variables.css'), defaultCss);
+console.log(`Generated: dist/css/variables.css (alias of ${defaultEntry.stem}.css)`);
+
+console.log(`Token build complete (${entries.length} theme${entries.length === 1 ? '' : 's'}).`);

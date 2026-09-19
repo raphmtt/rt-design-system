@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rtds.dev/schema/theme.rtds.schema.json",
+  "title": "RTDS theme",
+  "description": "One JSON file per theme. Color source of truth is OKLCH channels (not hex). Generator emits oklch() CSS.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "colorSpace", "light", "dark", "radius"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Theme id; must match the filename stem (atlas.theme.rtds.json → atlas)."
+    },
+    "colorSpace": {
+      "const": "oklch",
+      "description": "Locked color space. Gradients should interpolate in oklch."
+    },
+    "radius": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Base corner radius, e.g. 0.5rem."
+    },
+    "light": { "$ref": "#/$defs/colorMap" },
+    "dark": { "$ref": "#/$defs/colorMap" }
+  },
+  "$defs": {
+    "oklchColor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["l", "c", "h"],
+      "properties": {
+        "l": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Lightness 0–1"
+        },
+        "c": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Chroma ≥ 0"
+        },
+        "h": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 360,
+          "description": "Hue 0–360"
+        },
+        "a": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Optional alpha 0–1"
+        }
+      }
+    },
+    "colorMap": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/oklchColor" },
+      "required": [
+        "background",
+        "foreground",
+        "card",
+        "cardForeground",
+        "primary",
+        "primaryForeground",
+        "secondary",
+        "secondaryForeground",
+        "muted",
+        "mutedForeground",
+        "accent",
+        "accentForeground",
+        "destructive",
+        "destructiveForeground",
+        "border",
+        "input",
+        "ring",
+        "success",
+        "warning"
+      ],
+      "properties": {
+        "background": { "$ref": "#/$defs/oklchColor" },
+        "foreground": { "$ref": "#/$defs/oklchColor" },
+        "card": { "$ref": "#/$defs/oklchColor" },
+        "cardForeground": { "$ref": "#/$defs/oklchColor" },
+        "primary": { "$ref": "#/$defs/oklchColor" },
+        "primaryForeground": { "$ref": "#/$defs/oklchColor" },
+        "secondary": { "$ref": "#/$defs/oklchColor" },
+        "secondaryForeground": { "$ref": "#/$defs/oklchColor" },
+        "muted": { "$ref": "#/$defs/oklchColor" },
+        "mutedForeground": { "$ref": "#/$defs/oklchColor" },
+        "accent": { "$ref": "#/$defs/oklchColor" },
+        "accentForeground": { "$ref": "#/$defs/oklchColor" },
+        "destructive": { "$ref": "#/$defs/oklchColor" },
+        "destructiveForeground": { "$ref": "#/$defs/oklchColor" },
+        "border": { "$ref": "#/$defs/oklchColor" },
+        "input": { "$ref": "#/$defs/oklchColor" },
+        "ring": { "$ref": "#/$defs/oklchColor" },
+        "success": { "$ref": "#/$defs/oklchColor" },
+        "successForeground": { "$ref": "#/$defs/oklchColor" },
+        "warning": { "$ref": "#/$defs/oklchColor" },
+        "warningForeground": { "$ref": "#/$defs/oklchColor" }
+      }
+    }
+  }
+}

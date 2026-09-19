@@ -1,4 +1,4 @@
-@import "@rtds/tw-preset/styles.css";
+@import "@rtds/ui/playground.css";
 
 /* Scan @rtds/ui source for Tailwind classes */
 @source "../../../packages/ui/src/**/*.{ts,tsx}";

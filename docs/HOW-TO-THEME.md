@@ -2,55 +2,49 @@
 
 Change **colors**, **fonts**, and **icons** without rewriting components.
 
-Theme contract: `data-brand="atlas|folio|maison"` + `.dark` on `<html>`. There are no aliases for the old `aurora` / `editorial` ids.
+**Colors (OKLCH):** see [THEMING.md](./THEMING.md). One `*.theme.rtds.json` per theme; generator emits `oklch()` CSS. Product apps import `@rtds/ui/styles.css` and toggle `.dark` on `<html>`.
+
+This page covers fonts, icons, and radius.
 
 ---
 
 ## Colors
 
-Each niche × mode is a JSON file of **hex** semantic tokens:
+Author OKLCH `{ l, c, h }` objects in:
 
 ```
-design/tokens/themes/atlas-light.json
-design/tokens/themes/atlas-dark.json
-design/tokens/themes/folio-light.json
-design/tokens/themes/folio-dark.json
-design/tokens/themes/maison-light.json
-design/tokens/themes/maison-dark.json
+packages/tokens/themes/atlas.theme.rtds.json
+packages/tokens/themes/folio.theme.rtds.json
+packages/tokens/themes/maison.theme.rtds.json
 ```
 
-1. Edit the hex values in the theme file (keep the same token keys).
-2. Rebuild and commit generated CSS:
+Rebuild:
 
 ```bash
 pnpm tokens:build
 ```
 
-3. Components already consume `bg-background`, `text-foreground`, `bg-primary`, `bg-success`, `bg-warning`, etc. Do **not** put raw hex in UI.
+Components consume `bg-background`, `text-foreground`, `bg-primary`, `bg-success`, `bg-warning`, etc. Do **not** put raw hex or `oklch()` literals in UI.
 
-Radius is per niche in the same JSON (`component.radius`):
+Product path (one theme):
+
+```css
+@import "@rtds/ui/styles.css";
+```
+
+```html
+<html class="dark">
+```
+
+Demo playground only may set `data-theme="folio"` (or use `BrandProvider`) to preview several JSON files. That is not the product contract.
+
+Radius is per theme JSON (`radius`):
 
 | Niche | Radius |
 |-------|--------|
 | atlas | `0.5rem` |
 | folio | `0.375rem` |
 | maison | `0.75rem` |
-
-Switch at runtime:
-
-```html
-<html data-brand="folio" class="dark">
-```
-
-Or:
-
-```tsx
-<BrandProvider defaultBrand="atlas">
-  <ThemeProvider defaultMode="system">{children}</ThemeProvider>
-</BrandProvider>
-```
-
-`BrandSelect` + `ModeToggle` restyle the **full page**. Old `localStorage` values `aurora` / `editorial` migrate to `atlas`.
 
 ---
 
@@ -64,7 +58,7 @@ Locked stack (all niches — no per-niche type cosplay):
 | Heading / body | Inter | `--font-heading`, `--font-body` | `font-heading`, default body |
 | Mono | JetBrains Mono | `--font-mono` | `font-mono` |
 
-Source: `design/tokens/primitive.json` → `font.family.*`, referenced from each theme JSON.
+Source: `design/tokens/primitive.json` → `font.family.*`. The generator emits these on every theme CSS file.
 
 Load Google Fonts in the app shell (`apps/demo/index.html`, Storybook `preview-head.html`, create CLI template):
 
@@ -106,9 +100,13 @@ Stroke is `1.5`. Compact controls (checkbox, select chevron) may pass a smaller 
 ## Pipeline
 
 ```
-design/tokens/*.json  →  pnpm tokens:build  →  packages/tokens/dist/css/variables.css
-                                              →  @rtds/tw-preset @theme var(--…)
-                                              →  @rtds/ui + demo + Storybook
+packages/tokens/themes/*.theme.rtds.json
+    →  pnpm tokens:build
+    →  packages/tokens/dist/{atlas,folio,maison,playground}.css
+    →  @rtds/ui/styles.css  (product: atlas + Tailwind @theme)
+    →  @rtds/ui + demo + Storybook
 ```
 
 `pnpm tokens:check` fails if dist is out of date. Always commit `packages/tokens/dist`.
+
+Full color contract: [THEMING.md](./THEMING.md).
