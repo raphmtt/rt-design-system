@@ -32,6 +32,11 @@ const preview: Preview = {
     backgrounds: { disable: true },
   },
   decorators: [
+    (Story) => (
+      <div className="bg-background text-foreground min-h-full p-8">
+        <Story />
+      </div>
+    ),
     withThemeByDataAttribute({
       themes: {
         atlas: 'atlas',

@@ -4,6 +4,9 @@
 /* Tailwind v4 imports */
 @import "tailwindcss";
 
+/* Always generate utilities used by @rtds/ui (Storybook, demo, apps). */
+@source "../ui/src/**/*.{ts,tsx}";
+
 /* Theme inline mappings for Tailwind v4 — hex CSS vars, no hsl() wrapper */
 @theme inline {
   --font-display: var(--font-display);
