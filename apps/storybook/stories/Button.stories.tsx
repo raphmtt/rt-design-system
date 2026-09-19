@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@acme/ui';
+import { Button, buttonVariants } from '@acme/ui';
 
 const meta: Meta<typeof Button> = {
   title: 'Foundations/Button',
@@ -14,6 +14,9 @@ const meta: Meta<typeof Button> = {
       control: 'select',
       options: ['default', 'sm', 'lg', 'icon'],
     },
+    loading: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+    fullWidth: { control: 'boolean' },
   },
 };
 
@@ -116,5 +119,13 @@ export const AllSizes: Story = {
       <Button size="default">Default</Button>
       <Button size="lg">Large</Button>
     </div>
+  ),
+};
+
+export const LinkStyled: Story = {
+  render: () => (
+    <a href="#docs" className={buttonVariants()}>
+      Documentation
+    </a>
   ),
 };

@@ -4,7 +4,7 @@ import { cn } from '../../lib/utils';
 import { Icon } from '../icon';
 import { Container } from '../layout/container';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../card';
-import { Button } from '../button';
+import { buttonVariants } from '../button';
 import { Badge } from '../badge';
 
 export interface PricingFeature {
@@ -91,14 +91,16 @@ const PricingTier = React.forwardRef<
           </ul>
         </CardContent>
         <CardFooter>
-          <Button
-            asChild
-            variant={featured ? 'default' : 'outline'}
-            className="w-full"
-            size="lg"
+          <a
+            href={cta.href}
+            className={buttonVariants({
+              variant: featured ? 'default' : 'outline',
+              size: 'lg',
+              fullWidth: true,
+            })}
           >
-            <a href={cta.href}>{cta.label}</a>
-          </Button>
+            {cta.label}
+          </a>
         </CardFooter>
       </Card>
     );

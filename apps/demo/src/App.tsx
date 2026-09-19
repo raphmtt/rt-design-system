@@ -40,6 +40,7 @@ const Logo = () => (
 );
 
 const navItems = [
+  { label: 'Button', href: '#button-poc' },
   { label: 'Features', href: '#features' },
   { label: 'Stats', href: '#stats' },
   { label: 'FAQ', href: '#faq' },
@@ -129,6 +130,30 @@ function Landing() {
             </>
           }
         />
+
+        <Section id="button-poc">
+          <Container>
+            <h2 className="font-heading text-3xl font-bold text-center mb-3">Button</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8">
+              1:1 Base UI wrapper styled with CSS tokens. Switch {niche} × {resolvedMode} in
+              the header — these restyle with no code edits.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Button>Default</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="destructive">Destructive</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="link">Link</Button>
+            </div>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+              <Button size="sm">Small</Button>
+              <Button size="lg">Large</Button>
+              <Button loading>Loading</Button>
+              <Button disabled>Disabled</Button>
+            </div>
+          </Container>
+        </Section>
 
         <Section id="features" tone="muted">
           <FeatureGrid

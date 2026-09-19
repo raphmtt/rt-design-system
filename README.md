@@ -94,14 +94,15 @@ Toggle `.dark` class on `<html>`:
 - [DESIGN.md](./docs/DESIGN.md) — Visual principles and token rules
 - [PERF-A11Y-CHECKLIST.md](./docs/PERF-A11Y-CHECKLIST.md) — Pre-ship checklist
 - [FIGMA-CODE-SYNC.md](./docs/FIGMA-CODE-SYNC.md) — Figma ↔ code sync guide
+- [ADR-001-base-ui-wrappers.md](./docs/ADR-001-base-ui-wrappers.md) — FINAL: 1:1 Base UI wrappers (Button PoC)
 - [AGENTS.md](./docs/AGENTS.md) — Instructions for AI agents
 
 ## Tech Stack
 
 - React 19 + TypeScript strict
 - Tailwind CSS v4
-- shadcn/ui (compose path)
-- Radix UI primitives
+- Base UI (`@base-ui/react`) — 1:1 wrappers; Button is the PoC ([ADR-001](./docs/ADR-001-base-ui-wrappers.md))
+- Remaining inventory still on Radix until rolled out the same way
 - Storybook 8+
 - Vite
 - pnpm workspaces + Turborepo

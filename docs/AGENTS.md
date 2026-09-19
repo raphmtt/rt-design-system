@@ -37,8 +37,10 @@ Fix all errors before committing.
 
 ### Components
 
+- ✓ Wrap Base UI 1:1 — one public export per primitive; swallow compound parts ([ADR-001](./ADR-001-base-ui-wrappers.md))
 - ✓ Use component variants from props (`variant="outline"`, `size="lg"`)
 - ✓ Use `cn()` utility for class merging
+- ✗ Don't re-export Base UI `Root` / `Trigger` / namespaces from `@acme/ui`
 - ✗ Don't override component internal styles in consumer code
 - ✗ Don't modify components in `apps/demo` — only use exports from `@acme/ui`
 
