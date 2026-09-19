@@ -36,7 +36,7 @@ Product path (one theme):
 <html class="dark">
 ```
 
-Demo playground only may set `data-theme="folio"` (or use `BrandProvider`) to preview several JSON files. That is not the product contract.
+Demo playground only may set `data-theme="folio"` (or use `BrandProvider`) to preview several **locally hosted** JSON files. That is not the product contract.
 
 Radius is per theme JSON (`radius`):
 
@@ -100,13 +100,20 @@ Stroke is `1.5`. Compact controls (checkbox, select chevron) may pass a smaller 
 ## Pipeline
 
 ```
+# Design-system presets
 packages/tokens/themes/*.theme.rtds.json
     →  pnpm tokens:build
     →  packages/tokens/dist/{atlas,folio,maison,playground}.css
-    →  @rtds/ui/styles.css  (product: atlas + Tailwind @theme)
-    →  @rtds/ui + demo + Storybook
+    →  @rtds/ui/styles.css  (optional DS Atlas preset + base)
+    →  Storybook (`@rtds/ui/playground.css`)
+
+# App-owned (reference: apps/demo)
+apps/demo/themes/*.theme.rtds.json
+    →  rtds-tokens --in ./themes --out ./src/generated/themes
+    →  apps/demo/src/generated/themes/atlas.css  (product path)
+    →  @rtds/ui/base.css
 ```
 
-`pnpm tokens:check` fails if dist is out of date. Always commit `packages/tokens/dist`.
+`pnpm tokens:check` fails if `packages/tokens/dist` is out of date. Always commit `packages/tokens/dist`.
 
 Full color contract: [THEMING.md](./THEMING.md).

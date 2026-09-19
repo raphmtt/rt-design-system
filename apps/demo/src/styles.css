@@ -1,4 +1,8 @@
-@import "@rtds/ui/playground.css";
+/* Product-like default: one locally generated theme (:root + .dark). */
+@import "./generated/themes/atlas.css";
+/* Demo playground only — extra hosted themes built from apps/demo/themes. Real apps omit this. */
+@import "./generated/themes/playground.css";
+@import "@rtds/ui/base.css";
 
 /* Scan @rtds/ui source for Tailwind classes */
 @source "../../../packages/ui/src/**/*.{ts,tsx}";

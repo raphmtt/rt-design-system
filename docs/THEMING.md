@@ -52,6 +52,8 @@ Schema: `packages/tokens/theme.rtds.schema.json` (`colorSpace` must be `"oklch"`
 
 ## Build command
 
+Design-system package (presets published from this repo):
+
 ```bash
 pnpm tokens:build
 # or
@@ -62,10 +64,29 @@ The generator discovers `packages/tokens/themes/*.theme.rtds.json` and writes:
 
 | Output | Use |
 |--------|-----|
-| `packages/tokens/dist/atlas.css` | Product: Atlas `:root` + `.dark` |
-| `packages/tokens/dist/folio.css` | Product: Folio |
-| `packages/tokens/dist/maison.css` | Product: Maison |
-| `packages/tokens/dist/playground.css` | **Demo only** — all themes, switched with `data-theme` |
+| `packages/tokens/dist/atlas.css` | Product preset: Atlas `:root` + `.dark` |
+| `packages/tokens/dist/folio.css` | Product preset: Folio |
+| `packages/tokens/dist/maison.css` | Product preset: Maison |
+| `packages/tokens/dist/playground.css` | Storybook convenience — all presets, `data-theme` |
+
+### CLI (`--in` / `--out`)
+
+Apps should **own** their `*.theme.rtds.json` files and run the same generator:
+
+```bash
+# from an app directory
+rtds-tokens --in ./themes --out ./src/generated/themes
+
+# equivalent
+node packages/tokens/scripts/build-tokens.js --in apps/demo/themes --out apps/demo/src/generated/themes
+```
+
+| Flag | Default | Meaning |
+|------|---------|---------|
+| `--in` | `packages/tokens/themes` | Directory of `*.theme.rtds.json` |
+| `--out` | `packages/tokens/dist` | CSS output directory |
+| `--default-theme` | `atlas` | Theme used for `:root` in `playground.css` |
+| `--no-playground` | off | Skip `playground.css` |
 
 Build **fails** on invalid OKLCH, missing required keys, or light/dark key mismatch.
 
@@ -94,28 +115,39 @@ pnpm tokens:build
 
 ## App integration (product: one theme + light/dark)
 
+Simplest (DS-shipped Atlas preset):
+
 ```css
 @import "@rtds/ui/styles.css";
 ```
 
-That import pulls **Atlas** generated tokens plus the Tailwind v4 `@theme inline` bridge (`bg-primary` → `var(--primary)`). Toggle dark with `class="dark"` on `<html>` (or `ThemeProvider`).
+App-owned theme (recommended, what `apps/demo` does):
+
+```css
+@import "./generated/themes/atlas.css";
+@import "@rtds/ui/base.css";
+```
+
+Toggle dark with `class="dark"` on `<html>` (or `ThemeProvider`).
 
 **Do not** set `data-brand` / `data-theme` in product apps. There is no runtime multi-brand switcher on the product path.
 
-To ship Folio or Maison instead of Atlas:
-
-```css
-@import "@rtds/tokens/folio.css";
-@import "@rtds/tw-preset/styles.css";
-```
+To ship Folio or Maison instead of Atlas, generate that JSON and import its CSS file (or `@import "@rtds/tokens/folio.css"` if you want a DS preset).
 
 `ThemeProvider` only switches light/dark.
 
-## Demo multi-file playground
+## Demo: app-owned themes
 
-The monorepo demo and Storybook import `@rtds/ui/playground.css` so authors can preview atlas, folio, and maison. Switching is **demo-only**: `data-theme="folio"` on `<html>` (via `BrandProvider` / Storybook toolbar).
+`apps/demo` is the reference consumer:
 
-Product apps must not copy this pattern.
+1. Theme SoT: `apps/demo/themes/*.theme.rtds.json` (copies the demo **hosts**, not library playground CSS)
+2. `pnpm --filter demo tokens:build` (also runs on `dev` / `build`) invokes the first-party generator with `--in ./themes --out ./src/generated/themes`
+3. Default styling imports **one** generated file (`atlas.css`: `:root` + `.dark`) plus `@rtds/ui/base.css`
+4. The header switcher is labeled **demo playground — real apps ship one theme file**. It only swaps among locally generated themes via `data-theme` (from the demo's own `playground.css`). It does **not** import `@rtds/ui/playground.css` or `@rtds/tokens/playground.css`.
+
+Storybook still uses `@rtds/ui/playground.css` (package presets) for convenience. That is not the app integration path.
+
+Product apps must not copy the playground switcher.
 
 ## Future gradients
 

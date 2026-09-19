@@ -47,8 +47,9 @@ pnpm create @rtds landing my-site`}
           Theme Controls
         </h2>
         <p className="mt-2 text-muted-foreground">
-          Use the toolbar above to preview playground themes (atlas / folio / maison) and
-          modes (light/dark). Product apps use one theme CSS file plus `.dark`.
+          Use the toolbar to preview DS package presets (atlas / folio / maison) and
+          light/dark. The demo app is different: it owns `apps/demo/themes` and runs the
+          generator itself. Product apps ship one generated theme CSS file plus `.dark`.
         </p>
       </section>
     </div>

@@ -57,6 +57,8 @@ In your main CSS file:
 @import "@rtds/ui/styles.css";
 ```
 
+App-owned (recommended; `apps/demo` does this): generate CSS from your own `*.theme.rtds.json` and import that file plus `@rtds/ui/base.css`. See [THEMING.md](./THEMING.md).
+
 ### 3. Add Providers
 
 Wrap your app with a light/dark provider:
@@ -173,7 +175,7 @@ import { CTASection, Button } from '@rtds/ui';
 
 ## Theming
 
-Product apps: import `@rtds/ui/styles.css` and toggle `.dark` on `<html>`. See [THEMING.md](./THEMING.md).
+Product apps: import one generated theme CSS (or `@rtds/ui/styles.css`) and toggle `.dark` on `<html>`. See [THEMING.md](./THEMING.md).
 
 ### Change Mode
 
@@ -189,7 +191,7 @@ Or use the ThemeProvider:
 <ThemeProvider defaultMode="dark">
 ```
 
-`BrandProvider` / `BrandSelect` are **demo playground only** (swap atlas / folio / maison JSON files). Do not use them in product apps.
+`BrandProvider` / `BrandSelect` are **demo playground only** (swap among themes the demo hosts in `apps/demo/themes`). Do not use them in product apps.
 
 ### Add Theme Controls
 

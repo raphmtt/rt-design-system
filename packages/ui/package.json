@@ -17,11 +17,13 @@
       "import": "./dist/components/*.js"
     },
     "./styles.css": "./styles.css",
+    "./base.css": "./base.css",
     "./playground.css": "./playground.css"
   },
   "files": [
     "dist",
     "styles.css",
+    "base.css",
     "playground.css"
   ],
   "scripts": {

@@ -22,8 +22,12 @@
   "files": [
     "dist",
     "themes",
+    "scripts",
     "theme.rtds.schema.json"
   ],
+  "bin": {
+    "rtds-tokens": "./scripts/build-tokens.js"
+  },
   "scripts": {
     "build": "node scripts/build-tokens.js && tsc",
     "migrate:hex": "node scripts/migrate-hex-to-oklch.js",

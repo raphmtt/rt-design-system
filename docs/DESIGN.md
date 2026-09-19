@@ -38,7 +38,7 @@ Primitive  →  Semantic  →  Component
 
 | Axis | Product apps | Demo playground |
 |------|----------------|-----------------|
-| Theme | One generated CSS file (default Atlas via `@rtds/ui/styles.css`) | `data-theme` on `<html>` to swap JSON files |
+| Theme | One generated CSS file (`:root` + `.dark`) | `apps/demo/themes` generated locally; switcher is playground-only |
 | Mode | `.dark` class on `<html>` | same |
 
 Changing theme or mode **only** remaps CSS variables — **no component rewrites**.

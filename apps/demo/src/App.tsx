@@ -82,7 +82,7 @@ const faqItems = [
   {
     question: 'How do I customize the theme?',
     answer:
-      'Edit one `*.theme.rtds.json` file (OKLCH colors), run `pnpm tokens:build`, and import `@rtds/ui/styles.css`. Toggle `.dark` on `<html>` for dark mode. See docs/THEMING.md.',
+      'This demo owns `apps/demo/themes/*.theme.rtds.json` and runs the first-party generator. Product apps do the same with one file, import that generated CSS plus `@rtds/ui/base.css`, and toggle `.dark` on `<html>`. See docs/THEMING.md.',
   },
   {
     question: 'Is the design system accessible?',
@@ -109,6 +109,9 @@ function Landing() {
         cta={{ label: 'Get Started', href: '#' }}
         themeControls={
           <>
+            <span className="hidden md:inline max-w-[8.5rem] text-right text-[10px] leading-tight text-muted-foreground">
+              Demo playground — real apps ship one theme file
+            </span>
             <BrandSelect />
             <ModeToggle />
           </>
@@ -119,7 +122,7 @@ function Landing() {
         <Hero
           eyebrow={`${niche} · ${resolvedMode}`}
           title="Build beautiful landing pages faster"
-          description="Switch niche and color mode in the header — the whole page restyles from tokens. Atlas, Folio, and Maison × light/dark (demo playground). Lucide icons, Instrument Serif display, Inter, JetBrains Mono."
+          description="Switch playground theme and color mode in the header — CSS is generated from this app's own JSON. Real apps ship one theme file. Lucide icons, Instrument Serif display, Inter, JetBrains Mono."
           align="center"
           actions={
             <>
@@ -174,7 +177,7 @@ function Landing() {
             <FeatureGridItem
               icon={<Icon icon={Palette} size={ICON_SIZE_FEATURE} />}
               title="Themeable"
-              description="Three playground niches via CSS variables. Product apps ship one theme; the demo swaps atlas, folio, or maison without touching components."
+              description="This demo hosts atlas, folio, and maison JSON and generates CSS locally. Real apps ship one generated theme file."
             />
             <FeatureGridItem
               icon={<Icon icon={Globe} size={ICON_SIZE_FEATURE} />}

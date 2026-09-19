@@ -170,7 +170,7 @@ pnpm --filter storybook dev  # Check in Storybook
 | Components | `packages/ui/src/components/` |
 | Utils | `packages/ui/src/lib/` |
 | Providers | `packages/ui/src/providers/` |
-| Tokens (color SoT) | `packages/tokens/themes/*.theme.rtds.json` |
+| Tokens (color SoT) | `packages/tokens/themes/*.theme.rtds.json` (DS presets); `apps/demo/themes/` (demo app) |
 | Tokens (primitives) | `design/tokens/primitive.json` |
 | Tokens (built) | `packages/tokens/dist/` |
 | Stories | `apps/storybook/stories/` |
@@ -225,6 +225,6 @@ Use semantic tokens instead:
 
 ### Styles not applying
 
-1. Verify `@rtds/ui/styles.css` is imported (playground: `@rtds/ui/playground.css`)
+1. Verify a generated theme CSS file is imported, plus `@rtds/ui/base.css` (or `@rtds/ui/styles.css` for the DS Atlas preset)
 2. Check class names use semantic tokens
-3. Run `pnpm tokens:build` to regenerate CSS
+3. Run `pnpm tokens:build` (DS) and `pnpm --filter demo tokens:build` (demo-owned themes)

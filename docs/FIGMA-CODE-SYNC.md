@@ -37,7 +37,7 @@ Design hex (optional handoff)
 packages/tokens/themes/*.theme.rtds.json     ← SOURCE OF TRUTH for color
     → pnpm tokens:build  (first-party generator, not Style Dictionary)
 packages/tokens/dist/{atlas,folio,maison}.css
-    → @rtds/ui/styles.css (product) / playground.css (demo)
+    → @rtds/ui/styles.css (optional DS Atlas preset) / apps generate their own CSS
 ```
 
 ### CI Check

@@ -1,7 +1,14 @@
+#!/usr/bin/env node
 /**
  * First-party theme generator.
- * Discovers packages/tokens/themes/*.theme.rtds.json and emits CSS.
- * No third-party theming frameworks.
+ * Discovers *.theme.rtds.json and emits CSS. No third-party theming frameworks.
+ *
+ * Usage:
+ *   rtds-tokens [--in <themesDir>] [--out <outDir>] [--default-theme atlas] [--no-playground]
+ *
+ * Defaults (design-system package self-build):
+ *   --in  packages/tokens/themes
+ *   --out packages/tokens/dist
  */
 
 import fs from 'node:fs';
@@ -12,12 +19,12 @@ import { assertOklch, formatOklchCss, roundOklch } from './oklch.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const packageDir = path.resolve(__dirname, '..');
 const rootDir = path.resolve(packageDir, '..', '..');
-const themesDir = path.join(packageDir, 'themes');
-const outputDir = path.join(packageDir, 'dist');
 const primitivesPath = path.join(rootDir, 'design', 'tokens', 'primitive.json');
 
 const DEFAULT_THEME = 'atlas';
 const THEME_FILE_SUFFIX = '.theme.rtds.json';
+const PACKAGE_DIST = path.join(packageDir, 'dist');
+const PACKAGE_THEMES = path.join(packageDir, 'themes');
 
 const REQUIRED_COLOR_KEYS = [
   'background',
@@ -44,6 +51,66 @@ const REQUIRED_COLOR_KEYS = [
 function fail(message) {
   console.error(`tokens build failed: ${message}`);
   process.exit(1);
+}
+
+function printHelp() {
+  console.log(`Usage: rtds-tokens [options]
+
+  --in <dir>              Directory of *.theme.rtds.json
+                          (default: packages/tokens/themes)
+  --out <dir>             CSS output directory
+                          (default: packages/tokens/dist)
+  --default-theme <name>  Theme used for :root in playground CSS
+                          (default: atlas)
+  --no-playground         Do not emit playground.css
+  -h, --help              Show this help
+
+Examples:
+  # Design-system package self-build
+  pnpm --filter @rtds/tokens build
+
+  # App-owned themes (product-like)
+  rtds-tokens --in ./themes --out ./src/generated/themes
+  node packages/tokens/scripts/build-tokens.js --in apps/demo/themes --out apps/demo/src/generated/themes
+`);
+}
+
+function parseArgs(argv) {
+  const options = {
+    in: PACKAGE_THEMES,
+    out: PACKAGE_DIST,
+    defaultTheme: DEFAULT_THEME,
+    playground: true,
+  };
+
+  for (let i = 0; i < argv.length; i += 1) {
+    const arg = argv[i];
+    const next = () => {
+      const value = argv[i + 1];
+      if (!value || value.startsWith('--')) {
+        fail(`${arg} requires a value`);
+      }
+      i += 1;
+      return value;
+    };
+
+    if (arg === '-h' || arg === '--help') {
+      printHelp();
+      process.exit(0);
+    } else if (arg === '--in' || arg === '--themes') {
+      options.in = path.resolve(next());
+    } else if (arg === '--out') {
+      options.out = path.resolve(next());
+    } else if (arg === '--default-theme') {
+      options.defaultTheme = next();
+    } else if (arg === '--no-playground') {
+      options.playground = false;
+    } else {
+      fail(`unknown argument: ${arg} (use --help)`);
+    }
+  }
+
+  return options;
 }
 
 function camelToKebab(name) {
@@ -84,7 +151,7 @@ function loadSharedVars() {
   };
 }
 
-function discoverThemes() {
+function discoverThemes(themesDir) {
   if (!fs.existsSync(themesDir)) {
     fail(`no themes directory at ${themesDir}`);
   }
@@ -194,17 +261,17 @@ function emitProductCss(theme, sharedVars) {
   ].join('\n');
 }
 
-function emitPlaygroundCss(themes, sharedVars) {
+function emitPlaygroundCss(themes, sharedVars, defaultTheme) {
   const chunks = [
     '/* generated — do not edit */',
-    '/* Demo playground only. Product apps import a single theme CSS file. */',
+    '/* Playground only. Product apps import a single theme CSS file. */',
     '',
   ];
 
   for (const { theme } of themes) {
     const light = declarationsFor(theme.light, theme.radius, sharedVars);
     const dark = declarationsFor(theme.dark, theme.radius, sharedVars);
-    const isDefault = theme.name === DEFAULT_THEME;
+    const isDefault = theme.name === defaultTheme;
 
     const lightSelector = isDefault
       ? `:root, [data-theme="${theme.name}"]`
@@ -220,9 +287,12 @@ function emitPlaygroundCss(themes, sharedVars) {
   return chunks.join('\n');
 }
 
-function cleanGeneratedCss() {
+function rel(filePath) {
+  return path.relative(process.cwd(), filePath) || filePath;
+}
+
+function cleanGeneratedCss(outputDir) {
   fs.mkdirSync(outputDir, { recursive: true });
-  if (!fs.existsSync(outputDir)) return;
   for (const name of fs.readdirSync(outputDir)) {
     if (name.endsWith('.css')) {
       fs.unlinkSync(path.join(outputDir, name));
@@ -230,30 +300,46 @@ function cleanGeneratedCss() {
   }
 }
 
-const entries = discoverThemes();
-for (const entry of entries) {
-  validateTheme(entry);
+function build(options) {
+  const { in: themesDir, out: outputDir, defaultTheme, playground } = options;
+  const entries = discoverThemes(themesDir);
+  for (const entry of entries) {
+    validateTheme(entry);
+  }
+
+  const sharedVars = loadSharedVars();
+  cleanGeneratedCss(outputDir);
+
+  const defaultEntry =
+    entries.find((entry) => entry.stem === defaultTheme) ?? entries[0];
+
+  for (const entry of entries) {
+    const css = emitProductCss(entry.theme, sharedVars);
+    const outFile = path.join(outputDir, `${entry.stem}.css`);
+    fs.writeFileSync(outFile, css);
+    console.log(`Generated: ${rel(outFile)}`);
+  }
+
+  if (playground) {
+    const playgroundCss = emitPlaygroundCss(entries, sharedVars, defaultEntry.stem);
+    const playgroundFile = path.join(outputDir, 'playground.css');
+    fs.writeFileSync(playgroundFile, playgroundCss);
+    console.log(`Generated: ${rel(playgroundFile)}`);
+  }
+
+  if (path.resolve(outputDir) === path.resolve(PACKAGE_DIST)) {
+    const defaultCss = fs.readFileSync(
+      path.join(outputDir, `${defaultEntry.stem}.css`),
+      'utf8'
+    );
+    fs.mkdirSync(path.join(outputDir, 'css'), { recursive: true });
+    fs.writeFileSync(path.join(outputDir, 'css', 'variables.css'), defaultCss);
+    console.log(`Generated: ${rel(path.join(outputDir, 'css', 'variables.css'))} (alias of ${defaultEntry.stem}.css)`);
+  }
+
+  console.log(
+    `Token build complete (${entries.length} theme${entries.length === 1 ? '' : 's'} from ${rel(themesDir)}).`
+  );
 }
 
-const sharedVars = loadSharedVars();
-cleanGeneratedCss();
-
-const defaultEntry = entries.find((entry) => entry.stem === DEFAULT_THEME) ?? entries[0];
-
-for (const entry of entries) {
-  const css = emitProductCss(entry.theme, sharedVars);
-  const outFile = path.join(outputDir, `${entry.stem}.css`);
-  fs.writeFileSync(outFile, css);
-  console.log(`Generated: dist/${entry.stem}.css`);
-}
-
-const playground = emitPlaygroundCss(entries, sharedVars);
-fs.writeFileSync(path.join(outputDir, 'playground.css'), playground);
-console.log('Generated: dist/playground.css');
-
-const defaultCss = fs.readFileSync(path.join(outputDir, `${defaultEntry.stem}.css`), 'utf8');
-fs.mkdirSync(path.join(outputDir, 'css'), { recursive: true });
-fs.writeFileSync(path.join(outputDir, 'css', 'variables.css'), defaultCss);
-console.log(`Generated: dist/css/variables.css (alias of ${defaultEntry.stem}.css)`);
-
-console.log(`Token build complete (${entries.length} theme${entries.length === 1 ? '' : 's'}).`);
+build(parseArgs(process.argv.slice(2)));

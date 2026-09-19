@@ -1,3 +1,3 @@
-/* Demo playground: all theme JSON files, switched with data-theme on <html>. */
+/* Storybook convenience: package-preset playground (not the app-owned demo path). */
 @import "@rtds/tokens/playground.css";
-@import "@rtds/tw-preset/styles.css";
+@import "./base.css";

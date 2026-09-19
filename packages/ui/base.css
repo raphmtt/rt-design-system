@@ -1,0 +1,2 @@
+/* Component + Tailwind base. No theme CSS — apps import a generated theme separately. */
+@import "@rtds/tw-preset/styles.css";

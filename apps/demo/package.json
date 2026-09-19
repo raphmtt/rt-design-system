@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "tokens:build": "node ../../packages/tokens/scripts/build-tokens.js --in ./themes --out ./src/generated/themes",
+    "dev": "pnpm tokens:build && vite",
+    "build": "pnpm tokens:build && tsc && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx"

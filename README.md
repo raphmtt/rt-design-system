@@ -71,7 +71,14 @@ pnpm typecheck
 
 ## Theming
 
-Product apps use **one theme** (default Atlas) and toggle `.dark` on `<html>`:
+Product apps use **one theme** and toggle `.dark` on `<html>`:
+
+```css
+@import "./generated/themes/atlas.css"; /* app-owned, after rtds-tokens --in/--out */
+@import "@rtds/ui/base.css";
+```
+
+Or the DS-shipped Atlas preset:
 
 ```css
 @import "@rtds/ui/styles.css";
@@ -81,9 +88,7 @@ Product apps use **one theme** (default Atlas) and toggle `.dark` on `<html>`:
 <html class="dark">
 ```
 
-Author colors as OKLCH `{ l, c, h }` in `packages/tokens/themes/*.theme.rtds.json`. The demo may preview several theme files; that playground is not the product contract.
-
-See [docs/THEMING.md](./docs/THEMING.md).
+See [docs/THEMING.md](./docs/THEMING.md). The demo (`apps/demo/themes`) is the reference for app-owned JSON + generator.
 
 ## Documentation
 
