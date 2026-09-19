@@ -34,7 +34,8 @@ function Introduction() {
 {`# Install packages
 pnpm add @rtds/ui @rtds/tokens @rtds/tw-preset
 
-# CSS: @import "@rtds/ui/styles.css";
+# CSS: @import "./generated/themes/atlas.css";
+#      @import "@rtds/ui/base.css";
 
 # Or scaffold a new project
 pnpm create @rtds landing my-site`}

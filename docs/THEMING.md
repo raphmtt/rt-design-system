@@ -115,24 +115,18 @@ pnpm tokens:build
 
 ## App integration (product: one theme + light/dark)
 
-Simplest (DS-shipped Atlas preset):
-
-```css
-@import "@rtds/ui/styles.css";
-```
-
-App-owned theme (recommended, what `apps/demo` does):
+Scaffolded apps (`pnpm create @rtds landing`) **own** `themes/*.theme.rtds.json` and generate CSS on `pnpm dev` / `pnpm build`:
 
 ```css
 @import "./generated/themes/atlas.css";
 @import "@rtds/ui/base.css";
 ```
 
-Toggle dark with `class="dark"` on `<html>` (or `ThemeProvider`).
+Toggle dark with `class="dark"` on `<html>` (or `ThemeProvider` / `ModeToggle`). Edit the JSON and save — Vite rebuilds CSS.
 
 **Do not** set `data-brand` / `data-theme` in product apps. There is no runtime multi-brand switcher on the product path.
 
-To ship Folio or Maison instead of Atlas, generate that JSON and import its CSS file (or `@import "@rtds/tokens/folio.css"` if you want a DS preset).
+Alternative: import the DS-shipped Atlas preset with `@import "@rtds/ui/styles.css"` (no local JSON). The create template does not use this; it generates from your theme file.
 
 `ThemeProvider` only switches light/dark.
 

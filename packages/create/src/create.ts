@@ -48,6 +48,8 @@ export async function create(options: CreateOptions): Promise<void> {
   console.log('  pnpm install');
   console.log('  pnpm dev');
   console.log();
+  console.log(pc.dim('  Colors: edit themes/atlas.theme.rtds.json (regenerates on save).'));
+  console.log();
 }
 
 function copyDir(src: string, dest: string): void {

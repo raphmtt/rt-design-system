@@ -17,7 +17,8 @@
     "./playground.css": "./dist/playground.css",
     "./css": "./dist/css/variables.css",
     "./css/*": "./dist/css/*",
-    "./themes/*": "./dist/*"
+    "./themes/*": "./dist/*",
+    "./cli": "./scripts/build-tokens.js"
   },
   "files": [
     "dist",

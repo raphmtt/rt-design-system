@@ -54,10 +54,11 @@ pnpm add @rtds/ui @rtds/tokens @rtds/tw-preset
 In your main CSS file:
 
 ```css
-@import "@rtds/ui/styles.css";
+@import "./generated/themes/atlas.css";
+@import "@rtds/ui/base.css";
 ```
 
-App-owned (recommended; `apps/demo` does this): generate CSS from your own `*.theme.rtds.json` and import that file plus `@rtds/ui/base.css`. See [THEMING.md](./THEMING.md).
+New apps from `pnpm create @rtds landing` already include `themes/atlas.theme.rtds.json` and regenerate CSS on `pnpm dev`.
 
 ### 3. Add Providers
 

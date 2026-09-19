@@ -31,7 +31,8 @@ pnpm add @rtds/ui @rtds/tokens @rtds/tw-preset
 Import styles in your CSS:
 
 ```css
-@import "@rtds/ui/styles.css";
+@import "./generated/themes/atlas.css";
+@import "@rtds/ui/base.css";
 ```
 
 ## Packages
@@ -40,7 +41,7 @@ Import styles in your CSS:
 |---------|-------------|
 | `@rtds/tokens` | OKLCH theme JSON + generated CSS + JS helpers |
 | `@rtds/tw-preset` | Tailwind CSS v4 `@theme` bridge and base styles |
-| `@rtds/ui` | React components (`styles.css` is the one app import) |
+| `@rtds/ui` | React components (`base.css` + your generated theme CSS) |
 | `@rtds/eslint-config` | ESLint configuration |
 | `@rtds/create` | CLI scaffolding tool |
 
@@ -81,7 +82,8 @@ Product apps use **one theme** and toggle `.dark` on `<html>`:
 Or the DS-shipped Atlas preset:
 
 ```css
-@import "@rtds/ui/styles.css";
+@import "./generated/themes/atlas.css";
+@import "@rtds/ui/base.css";
 ```
 
 ```html

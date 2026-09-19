@@ -1,4 +1,5 @@
-@import "@rtds/ui/styles.css";
+@import "./generated/themes/atlas.css";
+@import "@rtds/ui/base.css";
 
-/* Scan node_modules/@rtds/ui source for Tailwind classes */
+/* Scan installed @rtds/ui for Tailwind classes */
 @source "../../node_modules/@rtds/ui/dist/**/*.js";

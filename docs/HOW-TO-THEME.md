@@ -2,7 +2,7 @@
 
 Change **colors**, **fonts**, and **icons** without rewriting components.
 
-**Colors (OKLCH):** see [THEMING.md](./THEMING.md). One `*.theme.rtds.json` per theme; generator emits `oklch()` CSS. Product apps import `@rtds/ui/styles.css` and toggle `.dark` on `<html>`.
+**Colors (OKLCH):** see [THEMING.md](./THEMING.md). One `*.theme.rtds.json` per theme; generator emits `oklch()` CSS. Product apps (including the create template) generate a theme CSS file and import it plus `@rtds/ui/base.css`. Toggle `.dark` on `<html>`.
 
 This page covers fonts, icons, and radius.
 
@@ -29,7 +29,8 @@ Components consume `bg-background`, `text-foreground`, `bg-primary`, `bg-success
 Product path (one theme):
 
 ```css
-@import "@rtds/ui/styles.css";
+@import "./generated/themes/atlas.css";
+@import "@rtds/ui/base.css";
 ```
 
 ```html
@@ -107,10 +108,10 @@ packages/tokens/themes/*.theme.rtds.json
     →  @rtds/ui/styles.css  (optional DS Atlas preset + base)
     →  Storybook (`@rtds/ui/playground.css`)
 
-# App-owned (reference: apps/demo)
-apps/demo/themes/*.theme.rtds.json
+# App-owned (create template + apps/demo)
+themes/*.theme.rtds.json
     →  rtds-tokens --in ./themes --out ./src/generated/themes
-    →  apps/demo/src/generated/themes/atlas.css  (product path)
+    →  src/generated/themes/atlas.css  (product path)
     →  @rtds/ui/base.css
 ```
 
