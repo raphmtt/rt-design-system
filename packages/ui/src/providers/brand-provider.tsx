@@ -10,7 +10,7 @@ interface BrandContextValue {
 
 const BrandContext = React.createContext<BrandContextValue | undefined>(undefined);
 
-const STORAGE_KEY = 'acme-brand';
+const STORAGE_KEY = 'rtds-brand';
 
 export interface BrandProviderProps {
   children: React.ReactNode;

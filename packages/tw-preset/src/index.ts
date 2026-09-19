@@ -1,5 +1,5 @@
 // Tailwind preset exports
-export const acmePreset = {
+export const rtdsPreset = {
   theme: {
     extend: {
       fontFamily: {
@@ -61,7 +61,7 @@ export const acmePreset = {
         overlay: '300ms',
       },
       transitionTimingFunction: {
-        'acme-ease': 'cubic-bezier(0.2, 0, 0, 1)',
+        'rtds-ease': 'cubic-bezier(0.2, 0, 0, 1)',
       },
     },
   },

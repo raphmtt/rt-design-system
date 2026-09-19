@@ -22,7 +22,7 @@ const AnnouncementBar = React.forwardRef<HTMLDivElement, AnnouncementBarProps>(
       className,
       message,
       dismissible = true,
-      storageKey = 'acme-announcement-dismissed',
+      storageKey = 'rtds-announcement-dismissed',
       action,
       ...props
     },
